@@ -3,6 +3,10 @@ package softeer2nd;
 public class Pawn {
     private String color;
 
+    public Pawn() {
+        this.color = "white";
+    }
+
     public Pawn(String color) {
         this.color = color;
     }
