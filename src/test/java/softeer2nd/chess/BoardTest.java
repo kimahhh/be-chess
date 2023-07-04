@@ -1,5 +1,6 @@
 package softeer2nd.chess;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import softeer2nd.chess.pieces.Pawn;
 
@@ -7,15 +8,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
 
-    @Test
-    public void create() {
-        Board board = new Board();
+    private Board board;
 
-        verifyBoard(board, Pawn.WHITE_COLOR, 1, 0);
-        verifyBoard(board, Pawn.BLACK_COLOR, 2, 1);
+    @BeforeEach
+    public void setup() {
+        board = new Board();
     }
 
-    private void verifyBoard(Board board, String color, int size, int index) {
+    @Test
+    public void create() {
+        verifyBoard(Pawn.WHITE_COLOR, 1, 0);
+        verifyBoard(Pawn.BLACK_COLOR, 2, 1);
+    }
+
+    private void verifyBoard(String color, int size, int index) {
         Pawn pawn = new Pawn(color);
         board.add(pawn);
         assertEquals(size, board.size());
