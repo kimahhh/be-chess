@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PawnTest {
 
@@ -15,6 +16,13 @@ class PawnTest {
 
         verifyPawn(white);
         verifyPawn(black);
+    }
+
+    @Test
+    @DisplayName("매개변수가 없다면 흰색 폰 생성")
+    public void createBasicConstructor() {
+        Pawn pawn = new Pawn();
+        assertEquals("white", pawn.getColor());
     }
 
     private void verifyPawn(final String color) {
