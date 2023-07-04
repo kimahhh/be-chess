@@ -11,15 +11,15 @@ class BoardTest {
     public void create() {
         Board board = new Board();
 
-        Pawn white = new Pawn(Pawn.WHITE_COLOR);
-        board.add(white);
-        assertEquals(1, board.size());
-        assertEquals(white, board.findPawn(0));
+        verifyBoard(board, Pawn.WHITE_COLOR, 1, 0);
+        verifyBoard(board, Pawn.BLACK_COLOR, 2, 1);
+    }
 
-        Pawn black = new Pawn(Pawn.BLACK_COLOR);
-        board.add(black);
-        assertEquals(2, board.size());
-        assertEquals(black, board.findPawn(1));
+    private void verifyBoard(Board board, String color, int size, int index) {
+        Pawn pawn = new Pawn(color);
+        board.add(pawn);
+        assertEquals(size, board.size());
+        assertEquals(pawn, board.findPawn(index));
     }
 
 }
