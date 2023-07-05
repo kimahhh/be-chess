@@ -5,6 +5,8 @@ import softeer2nd.chess.pieces.Pawn;
 import java.util.ArrayList;
 
 public class Board {
+    private static final int BOARD_SIZE = 8;
+    private static final int EMPTY_ROW_NUM = 6;
     private ArrayList<ArrayList<Object>> board;
     private ArrayList<Pawn> Pawns;
 
@@ -46,28 +48,42 @@ public class Board {
 
     public void initialize() {
         Pawns.clear();
-        ArrayList<Object> whitePawns = new ArrayList<>();
-        ArrayList<Object> blackPawns = new ArrayList<>();
-        for (int i = 0;i < 8;i++) {
-            Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
-            Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
-            Pawns.add(white);
-            whitePawns.add(white);
-            Pawns.add(black);
-            blackPawns.add(black);
-        }
+        ArrayList<Object> whitePawns = createPawns(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
+        ArrayList<Object> blackPawns = createPawns(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
 
+        initialBoard();
+        addPawnsToBoard(1, blackPawns);
+        addPawnsToBoard(6, whitePawns);
+    }
+
+    private ArrayList<Object> createPawns(String color, String representation) {
+        ArrayList<Object> pawns = new ArrayList<>();
+        for (int i = 0;i < BOARD_SIZE;i++) {
+            Pawn pawn = new Pawn(color, representation);
+            Pawns.add(pawn);
+            pawns.add(pawn);
+        }
+        return pawns;
+    }
+
+    private ArrayList<Object> createEmptyRow() {
+        ArrayList<Object> empty = new ArrayList<>();
+        for (int i = 0;i < BOARD_SIZE;i++) {
+            empty.add(".");
+        }
+        return empty;
+    }
+
+    private void initialBoard() {
         board.clear();
-        ArrayList<Object> objects = new ArrayList<>();
-        for (int i = 0;i < 8;i++) {
-            objects.add(".");
+        ArrayList<Object> empty = createEmptyRow();
+        for (int i = 0;i < EMPTY_ROW_NUM;i++) {
+            board.add(empty);
         }
-        for (int i = 0;i < 6;i++) {
-            board.add(objects);
-        }
+    }
 
-        board.add(1, blackPawns);
-        board.add(6, whitePawns);
+    private void addPawnsToBoard(int index, ArrayList<Object> pawns) {
+        board.add(index, pawns);
     }
 
     public String print() {
