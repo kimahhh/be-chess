@@ -30,20 +30,12 @@ public class Board {
         return pieces.get(index);
     }
 
-    public String getBlackPawnsResult() {
-        return getPawnsResult(1);
-    }
-
-    public String getWhitePawnsResult() {
-        return getPawnsResult(6);
-    }
-
-    public String getPawnsResult(int index) {
+    public String getRowResult(int index) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Object obj : board.get(index)) {
             if (obj instanceof Piece) {
-                Piece pawn = (Piece) obj;
-                stringBuilder.append(pawn.getRepresentation());
+                Piece piece = (Piece) obj;
+                stringBuilder.append(piece.getRepresentation());
             }
         }
         return stringBuilder.toString();
