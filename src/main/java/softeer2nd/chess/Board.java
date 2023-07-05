@@ -4,29 +4,31 @@ import softeer2nd.chess.pieces.Piece;
 
 import java.util.ArrayList;
 
+import static softeer2nd.chess.pieces.Piece.createBlackPawn;
+import static softeer2nd.chess.pieces.Piece.createWhitePawn;
 import static softeer2nd.utils.StringUtils.appendNewLine;
 
 public class Board {
     private static final int BOARD_SIZE = 8;
     private static final int EMPTY_ROW_NUM = 6;
     private ArrayList<ArrayList<Object>> board;
-    private ArrayList<Piece> Pawns;
+    private ArrayList<Piece> pieces;
 
     public Board() {
         board = new ArrayList<>();
-        Pawns = new ArrayList<>();
+        pieces = new ArrayList<>();
     }
 
     public void add(Piece pawn) {
-        Pawns.add(pawn);
+        pieces.add(pawn);
     }
 
     public int size() {
-        return Pawns.size();
+        return pieces.size();
     }
 
     public Piece findPawn(int index) {
-        return Pawns.get(index);
+        return pieces.get(index);
     }
 
     public String getBlackPawnsResult() {
@@ -49,23 +51,29 @@ public class Board {
     }
 
     public void initialize() {
-        Pawns.clear();
-        ArrayList<Object> whitePawns = createPawns(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION);
-        ArrayList<Object> blackPawns = createPawns(Piece.BLACK_COLOR, Piece.BLACK_REPRESENTATION);
+        pieces.clear();
+        ArrayList<Object> whitePawns = createPawns(Piece.WHITE_COLOR, Piece.PAWN);
+        ArrayList<Object> blackPawns = createPawns(Piece.BLACK_COLOR, Piece.PAWN);
 
         initialBoard();
         addPawnsToBoard(1, blackPawns);
         addPawnsToBoard(6, whitePawns);
     }
 
-    private ArrayList<Object> createPawns(String color, String representation) {
-        ArrayList<Object> pawns = new ArrayList<>();
+    private ArrayList<Object> createPawns(String color, String name) {
+        ArrayList<Object> localPawns = new ArrayList<>();
         for (int i = 0;i < BOARD_SIZE;i++) {
-            Piece pawn = new Piece(color, representation);
-            Pawns.add(pawn);
-            pawns.add(pawn);
+            Piece piece = null;
+            if (color.equals(Piece.WHITE_COLOR)) {
+                piece = createWhitePawn();
+            }
+            else if (color.equals(Piece.BLACK_COLOR)) {
+                piece = createBlackPawn();
+            }
+            pieces.add(piece);
+            localPawns.add(piece);
         }
-        return pawns;
+        return localPawns;
     }
 
     private ArrayList<Object> createEmptyRow() {
