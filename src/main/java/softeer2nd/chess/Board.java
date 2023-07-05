@@ -1,6 +1,6 @@
 package softeer2nd.chess;
 
-import softeer2nd.chess.pieces.Pawn;
+import softeer2nd.chess.pieces.Piece;
 
 import java.util.ArrayList;
 
@@ -10,14 +10,14 @@ public class Board {
     private static final int BOARD_SIZE = 8;
     private static final int EMPTY_ROW_NUM = 6;
     private ArrayList<ArrayList<Object>> board;
-    private ArrayList<Pawn> Pawns;
+    private ArrayList<Piece> Pawns;
 
     public Board() {
         board = new ArrayList<>();
         Pawns = new ArrayList<>();
     }
 
-    public void add(Pawn pawn) {
+    public void add(Piece pawn) {
         Pawns.add(pawn);
     }
 
@@ -25,7 +25,7 @@ public class Board {
         return Pawns.size();
     }
 
-    public Pawn findPawn(int index) {
+    public Piece findPawn(int index) {
         return Pawns.get(index);
     }
 
@@ -40,8 +40,8 @@ public class Board {
     public String getPawnsResult(int index) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Object obj : board.get(index)) {
-            if (obj instanceof Pawn) {
-                Pawn pawn = (Pawn) obj;
+            if (obj instanceof Piece) {
+                Piece pawn = (Piece) obj;
                 stringBuilder.append(pawn.getRepresentation());
             }
         }
@@ -50,8 +50,8 @@ public class Board {
 
     public void initialize() {
         Pawns.clear();
-        ArrayList<Object> whitePawns = createPawns(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
-        ArrayList<Object> blackPawns = createPawns(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
+        ArrayList<Object> whitePawns = createPawns(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION);
+        ArrayList<Object> blackPawns = createPawns(Piece.BLACK_COLOR, Piece.BLACK_REPRESENTATION);
 
         initialBoard();
         addPawnsToBoard(1, blackPawns);
@@ -61,7 +61,7 @@ public class Board {
     private ArrayList<Object> createPawns(String color, String representation) {
         ArrayList<Object> pawns = new ArrayList<>();
         for (int i = 0;i < BOARD_SIZE;i++) {
-            Pawn pawn = new Pawn(color, representation);
+            Piece pawn = new Piece(color, representation);
             Pawns.add(pawn);
             pawns.add(pawn);
         }
@@ -92,8 +92,8 @@ public class Board {
         StringBuilder stringBuilder = new StringBuilder();
         for (ArrayList<Object> line: board) {
             for (Object obj : line) {
-                if (obj instanceof Pawn) {
-                    Pawn pawn = (Pawn) obj;
+                if (obj instanceof Piece) {
+                    Piece pawn = (Piece) obj;
                     stringBuilder.append(pawn.getRepresentation());
                 }
                 else {

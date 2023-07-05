@@ -2,7 +2,7 @@ package softeer2nd.chess;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import softeer2nd.chess.pieces.Pawn;
+import softeer2nd.chess.pieces.Piece;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,12 +17,12 @@ class BoardTest {
 
     @Test
     public void create() {
-        verifyBoard(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION, 1, 0);
-        verifyBoard(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION, 2, 1);
+        verifyBoard(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION, 1, 0);
+        verifyBoard(Piece.BLACK_COLOR, Piece.BLACK_REPRESENTATION, 2, 1);
     }
 
     private void verifyBoard(String color, String representation, int size, int index) {
-        Pawn pawn = new Pawn(color, representation);
+        Piece pawn = new Piece(color, representation);
         board.add(pawn);
         assertEquals(size, board.size());
         assertEquals(pawn, board.findPawn(index));
