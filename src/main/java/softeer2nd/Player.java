@@ -32,7 +32,7 @@ public class Player {
         System.out.println("Game is start");
         Board board = new Board();
         board.initialize();
-        System.out.println(board.print());
+        System.out.println(board.showBoard());
     }
 
     private static void endGame() {

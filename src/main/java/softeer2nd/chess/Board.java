@@ -23,7 +23,7 @@ public class Board {
         pieces.add(pawn);
     }
 
-    public int size() {
+    public int pieceCount() {
         return pieces.size();
     }
 
@@ -58,10 +58,10 @@ public class Board {
         ArrayList<Object> whitePieces = createPieces(WHITE_COLOR);
 
         initialBoard();
-        addPawnsToBoard(0, blackPieces);
-        addPawnsToBoard(1, blackPawns);
-        addPawnsToBoard(6, whitePawns);
-        addPawnsToBoard(7, whitePieces);
+        addPiecesToBoard(0, blackPieces);
+        addPiecesToBoard(1, blackPawns);
+        addPiecesToBoard(6, whitePawns);
+        addPiecesToBoard(7, whitePieces);
     }
 
     private ArrayList<Object> createPawns(String color, String name) {
@@ -141,11 +141,11 @@ public class Board {
         }
     }
 
-    private void addPawnsToBoard(int index, ArrayList<Object> pawns) {
+    private void addPiecesToBoard(int index, ArrayList<Object> pawns) {
         board.add(index, pawns);
     }
 
-    public String print() {
+    public String showBoard() {
         StringBuilder stringBuilder = new StringBuilder();
         for (ArrayList<Object> line: board) {
             for (Object obj : line) {
