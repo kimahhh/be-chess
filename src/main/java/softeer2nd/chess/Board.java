@@ -4,13 +4,13 @@ import softeer2nd.chess.pieces.Piece;
 
 import java.util.ArrayList;
 
-import static softeer2nd.chess.pieces.Piece.createBlackPawn;
-import static softeer2nd.chess.pieces.Piece.createWhitePawn;
+import static softeer2nd.chess.pieces.Piece.*;
+import static softeer2nd.chess.pieces.Piece.ROOK;
 import static softeer2nd.utils.StringUtils.appendNewLine;
 
 public class Board {
     private static final int BOARD_SIZE = 8;
-    private static final int EMPTY_ROW_NUM = 6;
+    private static final int EMPTY_ROW_NUM = 4;
     private ArrayList<ArrayList<Object>> board;
     private ArrayList<Piece> pieces;
 
@@ -52,12 +52,16 @@ public class Board {
 
     public void initialize() {
         pieces.clear();
-        ArrayList<Object> whitePawns = createPawns(Piece.WHITE_COLOR, Piece.PAWN);
+        ArrayList<Object> blackPieces = createPieces(Piece.BLACK_COLOR);
         ArrayList<Object> blackPawns = createPawns(Piece.BLACK_COLOR, Piece.PAWN);
+        ArrayList<Object> whitePawns = createPawns(Piece.WHITE_COLOR, Piece.PAWN);
+        ArrayList<Object> whitePieces = createPieces(WHITE_COLOR);
 
         initialBoard();
+        addPawnsToBoard(0, blackPieces);
         addPawnsToBoard(1, blackPawns);
         addPawnsToBoard(6, whitePawns);
+        addPawnsToBoard(7, whitePieces);
     }
 
     private ArrayList<Object> createPawns(String color, String name) {
@@ -74,6 +78,51 @@ public class Board {
             localPawns.add(piece);
         }
         return localPawns;
+    }
+
+    private ArrayList<Object> createPieces(String color) {
+        ArrayList<Object> localPieces = new ArrayList<>();
+        String[] piecesName = new String[]{ROOK, KNIGHT, BISHOP, QUEEN, KING, BISHOP, KNIGHT, ROOK};
+        for (String pieceName : piecesName) {
+            Piece piece = createPiece(color, pieceName);
+            pieces.add(piece);
+            localPieces.add(piece);
+        }
+        return localPieces;
+    }
+
+    private Piece createPiece(String color, String name) {
+        for (int i = 0;i < BOARD_SIZE;i++) {
+            if (color.equals(Piece.WHITE_COLOR)) {
+                switch (name) {
+                    case KING:
+                        return createWhiteKing();
+                    case QUEEN:
+                        return createWhiteQueen();
+                    case ROOK:
+                        return createWhiteRook();
+                    case BISHOP:
+                        return createWhiteBishop();
+                    case KNIGHT:
+                        return createWhiteKnight();
+                }
+            }
+            else if (color.equals(Piece.BLACK_COLOR)) {
+                switch (name) {
+                    case KING:
+                        return createBlackKing();
+                    case QUEEN:
+                        return createBlackQueen();
+                    case ROOK:
+                        return createBlackRook();
+                    case BISHOP:
+                        return createBlackBishop();
+                    case KNIGHT:
+                        return createBlackKnight();
+                }
+            }
+        }
+        return null;
     }
 
     private ArrayList<Object> createEmptyRow() {
