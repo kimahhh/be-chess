@@ -113,6 +113,13 @@ public class Piece {
         return new Piece(BLACK_COLOR, PAWN);
     }
 
+    public boolean isBlack() {
+        return this.color.equals(BLACK_COLOR);
+    }
+    public boolean isWhite() {
+        return this.color.equals(WHITE_COLOR);
+    }
+
     public String getColor() {
         return this.color;
     }
