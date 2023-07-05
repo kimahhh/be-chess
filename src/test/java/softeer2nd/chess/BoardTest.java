@@ -38,6 +38,8 @@ class BoardTest {
 
     private void initialize() {
         board.initialize();
+        assertEquals("pppppppp", board.getWhitePawnsResult());
+        assertEquals("PPPPPPPP", board.getBlackPawnsResult());
     }
 
 }
