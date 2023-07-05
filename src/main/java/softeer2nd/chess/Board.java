@@ -4,6 +4,8 @@ import softeer2nd.chess.pieces.Pawn;
 
 import java.util.ArrayList;
 
+import static softeer2nd.utils.StringUtils.appendNewLine;
+
 public class Board {
     private static final int BOARD_SIZE = 8;
     private static final int EMPTY_ROW_NUM = 6;
@@ -98,7 +100,7 @@ public class Board {
                     stringBuilder.append(obj);
                 }
             }
-            stringBuilder.append("\n");
+            appendNewLine(stringBuilder);
         }
         return stringBuilder.toString();
     }
