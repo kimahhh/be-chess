@@ -25,6 +25,25 @@ public class Board {
         return Pawns.get(index);
     }
 
+    public String getBlackPawnsResult() {
+        return getPawnsResult(1);
+    }
+
+    public String getWhitePawnsResult() {
+        return getPawnsResult(6);
+    }
+
+    public String getPawnsResult(int index) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Object obj : board.get(index)) {
+            if (obj instanceof Pawn) {
+                Pawn pawn = (Pawn) obj;
+                stringBuilder.append(pawn.getRepresentation());
+            }
+        }
+        return stringBuilder.toString();
+    }
+
     public void initialize() {
         Pawns.clear();
         ArrayList<Object> whitePawns = new ArrayList<>();
