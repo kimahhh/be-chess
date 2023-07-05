@@ -17,12 +17,12 @@ class BoardTest {
 
     @Test
     public void create() {
-        verifyBoard(Pawn.WHITE_COLOR, 1, 0);
-        verifyBoard(Pawn.BLACK_COLOR, 2, 1);
+        verifyBoard(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION, 1, 0);
+        verifyBoard(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION, 2, 1);
     }
 
-    private void verifyBoard(String color, int size, int index) {
-        Pawn pawn = new Pawn(color);
+    private void verifyBoard(String color, String representation, int size, int index) {
+        Pawn pawn = new Pawn(color, representation);
         board.add(pawn);
         assertEquals(size, board.size());
         assertEquals(pawn, board.findPawn(index));
