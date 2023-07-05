@@ -4,24 +4,25 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static softeer2nd.chess.pieces.Piece.*;
 
 class PieceTest {
 
     @Test
     @DisplayName("기물 생성")
     public void create() {
-        verifyPiece(Piece.createWhiteKing(), Piece.WHITE_COLOR, Piece.WHITE_KING_REPRESENTATION);
-        verifyPiece(Piece.createBlackKing(), Piece.BLACK_COLOR, Piece.BLACK_KING_REPRESENTATION);
-        verifyPiece(Piece.createWhiteQueen(), Piece.WHITE_COLOR, Piece.WHITE_QUEEN_REPRESENTATION);
-        verifyPiece(Piece.createBlackQueen(), Piece.BLACK_COLOR, Piece.BLACK_QUEEN_REPRESENTATION);
-        verifyPiece(Piece.createWhiteRook(), Piece.WHITE_COLOR, Piece.WHITE_ROOK_REPRESENTATION);
-        verifyPiece(Piece.createBlackRook(), Piece.BLACK_COLOR, Piece.BLACK_ROOK_REPRESENTATION);
-        verifyPiece(Piece.createWhiteBishop(), Piece.WHITE_COLOR, Piece.WHITE_BISHOP_REPRESENTATION);
-        verifyPiece(Piece.createBlackBishop(), Piece.BLACK_COLOR, Piece.BLACK_BISHOP_REPRESENTATION);
-        verifyPiece(Piece.createWhiteKnight(), Piece.WHITE_COLOR, Piece.WHITE_KNIGHT_REPRESENTATION);
-        verifyPiece(Piece.createBlackKnight(), Piece.BLACK_COLOR, Piece.BLACK_KNIGHT_REPRESENTATION);
-        verifyPiece(Piece.createWhitePawn(), Piece.WHITE_COLOR, Piece.WHITE_PAWN_REPRESENTATION);
-        verifyPiece(Piece.createBlackPawn(), Piece.BLACK_COLOR, Piece.BLACK_PAWN_REPRESENTATION);
+        verifyPiece(Piece.createWhiteKing(), WHITE_COLOR, WHITE_KING_REPRESENTATION);
+        verifyPiece(Piece.createBlackKing(), BLACK_COLOR, BLACK_KING_REPRESENTATION);
+        verifyPiece(Piece.createWhiteQueen(), WHITE_COLOR, WHITE_QUEEN_REPRESENTATION);
+        verifyPiece(Piece.createBlackQueen(), BLACK_COLOR, BLACK_QUEEN_REPRESENTATION);
+        verifyPiece(Piece.createWhiteRook(), WHITE_COLOR, WHITE_ROOK_REPRESENTATION);
+        verifyPiece(Piece.createBlackRook(), BLACK_COLOR, BLACK_ROOK_REPRESENTATION);
+        verifyPiece(Piece.createWhiteBishop(), WHITE_COLOR, WHITE_BISHOP_REPRESENTATION);
+        verifyPiece(Piece.createBlackBishop(), BLACK_COLOR, BLACK_BISHOP_REPRESENTATION);
+        verifyPiece(Piece.createWhiteKnight(), WHITE_COLOR, WHITE_KNIGHT_REPRESENTATION);
+        verifyPiece(Piece.createBlackKnight(), BLACK_COLOR, BLACK_KNIGHT_REPRESENTATION);
+        verifyPiece(Piece.createWhitePawn(), WHITE_COLOR, WHITE_PAWN_REPRESENTATION);
+        verifyPiece(Piece.createBlackPawn(), BLACK_COLOR, BLACK_PAWN_REPRESENTATION);
     }
 
     private void verifyPiece(final Piece piece, final String color, final char representation) {
@@ -32,18 +33,18 @@ class PieceTest {
     @Test
     @DisplayName("기물 색깔 검증")
     public void color() {
-        verifyWhitePiece(Piece.createWhiteKing());
-        verifyWhitePiece(Piece.createWhiteQueen());
-        verifyWhitePiece(Piece.createWhiteRook());
-        verifyWhitePiece(Piece.createWhiteBishop());
-        verifyWhitePiece(Piece.createWhiteKnight());
-        verifyWhitePiece(Piece.createWhitePawn());
-        verifyBlackPiece(Piece.createBlackKing());
-        verifyBlackPiece(Piece.createBlackQueen());
-        verifyBlackPiece(Piece.createBlackRook());
-        verifyBlackPiece(Piece.createBlackBishop());
-        verifyBlackPiece(Piece.createBlackKnight());
-        verifyBlackPiece(Piece.createBlackPawn());
+        verifyWhitePiece(createWhiteKing());
+        verifyWhitePiece(createWhiteQueen());
+        verifyWhitePiece(createWhiteRook());
+        verifyWhitePiece(createWhiteBishop());
+        verifyWhitePiece(createWhiteKnight());
+        verifyWhitePiece(createWhitePawn());
+        verifyBlackPiece(createBlackKing());
+        verifyBlackPiece(createBlackQueen());
+        verifyBlackPiece(createBlackRook());
+        verifyBlackPiece(createBlackBishop());
+        verifyBlackPiece(createBlackKnight());
+        verifyBlackPiece(createBlackPawn());
     }
 
     private void verifyWhitePiece(final Piece piece) {

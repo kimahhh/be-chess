@@ -5,7 +5,6 @@ import softeer2nd.chess.pieces.Piece;
 import java.util.ArrayList;
 
 import static softeer2nd.chess.pieces.Piece.*;
-import static softeer2nd.chess.pieces.Piece.ROOK;
 import static softeer2nd.utils.StringUtils.appendNewLine;
 
 public class Board {
@@ -52,9 +51,9 @@ public class Board {
 
     public void initialize() {
         pieces.clear();
-        ArrayList<Object> blackPieces = createPieces(Piece.BLACK_COLOR);
-        ArrayList<Object> blackPawns = createPawns(Piece.BLACK_COLOR, Piece.PAWN);
-        ArrayList<Object> whitePawns = createPawns(Piece.WHITE_COLOR, Piece.PAWN);
+        ArrayList<Object> blackPieces = createPieces(BLACK_COLOR);
+        ArrayList<Object> blackPawns = createPawns(BLACK_COLOR, PAWN);
+        ArrayList<Object> whitePawns = createPawns(WHITE_COLOR, PAWN);
         ArrayList<Object> whitePieces = createPieces(WHITE_COLOR);
 
         initialBoard();
@@ -68,10 +67,10 @@ public class Board {
         ArrayList<Object> localPawns = new ArrayList<>();
         for (int i = 0;i < BOARD_SIZE;i++) {
             Piece piece = null;
-            if (color.equals(Piece.WHITE_COLOR)) {
+            if (color.equals(WHITE_COLOR)) {
                 piece = createWhitePawn();
             }
-            else if (color.equals(Piece.BLACK_COLOR)) {
+            else if (color.equals(BLACK_COLOR)) {
                 piece = createBlackPawn();
             }
             pieces.add(piece);
@@ -93,7 +92,7 @@ public class Board {
 
     private Piece createPiece(String color, String name) {
         for (int i = 0;i < BOARD_SIZE;i++) {
-            if (color.equals(Piece.WHITE_COLOR)) {
+            if (color.equals(WHITE_COLOR)) {
                 switch (name) {
                     case KING:
                         return createWhiteKing();
@@ -107,7 +106,7 @@ public class Board {
                         return createWhiteKnight();
                 }
             }
-            else if (color.equals(Piece.BLACK_COLOR)) {
+            else if (color.equals(BLACK_COLOR)) {
                 switch (name) {
                     case KING:
                         return createBlackKing();
