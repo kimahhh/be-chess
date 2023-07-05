@@ -3,7 +3,7 @@ package softeer2nd.chess.pieces;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class PieceTest {
 
@@ -27,6 +27,32 @@ class PieceTest {
     private void verifyPiece(final Piece piece, final String color, final char representation) {
         assertEquals(color, piece.getColor());
         assertEquals(representation, piece.getRepresentation());
+    }
+
+    @Test
+    @DisplayName("기물 색깔 검증")
+    public void color() {
+        verifyWhitePiece(Piece.createWhiteKing());
+        verifyWhitePiece(Piece.createWhiteQueen());
+        verifyWhitePiece(Piece.createWhiteRook());
+        verifyWhitePiece(Piece.createWhiteBishop());
+        verifyWhitePiece(Piece.createWhiteKnight());
+        verifyWhitePiece(Piece.createWhitePawn());
+        verifyBlackPiece(Piece.createBlackKing());
+        verifyBlackPiece(Piece.createBlackQueen());
+        verifyBlackPiece(Piece.createBlackRook());
+        verifyBlackPiece(Piece.createBlackBishop());
+        verifyBlackPiece(Piece.createBlackKnight());
+        verifyBlackPiece(Piece.createBlackPawn());
+    }
+
+    private void verifyWhitePiece(final Piece piece) {
+        assertTrue(piece.isWhite());
+        assertFalse(piece.isBlack());
+    }
+    private void verifyBlackPiece(final Piece piece) {
+        assertTrue(piece.isBlack());
+        assertFalse(piece.isWhite());
     }
 
 }
