@@ -28,4 +28,16 @@ class BoardTest {
         assertEquals(pawn, board.findPawn(index));
     }
 
+    @Test
+    public void boardPrint() {
+        initialize();
+        String strBoard = "........\nPPPPPPPP\n........\n........\n" +
+                          "........\n........\npppppppp\n........\n";
+        assertEquals(strBoard, board.print());
+    }
+
+    private void initialize() {
+        board.initialize();
+    }
+
 }
