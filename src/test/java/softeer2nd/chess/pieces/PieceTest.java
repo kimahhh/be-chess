@@ -5,27 +5,28 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PawnTest {
+class PieceTest {
 
     @Test
-    @DisplayName("폰 생성")
+    @DisplayName("기물 생성")
     public void create() {
-        verifyPawn(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION);
-        verifyPawn(Piece.BLACK_COLOR, Piece.BLACK_REPRESENTATION);
+        verifyPiece(Piece.createWhiteKing(), Piece.WHITE_COLOR, Piece.WHITE_KING_REPRESENTATION);
+        verifyPiece(Piece.createBlackKing(), Piece.BLACK_COLOR, Piece.BLACK_KING_REPRESENTATION);
+        verifyPiece(Piece.createWhiteQueen(), Piece.WHITE_COLOR, Piece.WHITE_QUEEN_REPRESENTATION);
+        verifyPiece(Piece.createBlackQueen(), Piece.BLACK_COLOR, Piece.BLACK_QUEEN_REPRESENTATION);
+        verifyPiece(Piece.createWhiteRook(), Piece.WHITE_COLOR, Piece.WHITE_ROOK_REPRESENTATION);
+        verifyPiece(Piece.createBlackRook(), Piece.BLACK_COLOR, Piece.BLACK_ROOK_REPRESENTATION);
+        verifyPiece(Piece.createWhiteBishop(), Piece.WHITE_COLOR, Piece.WHITE_BISHOP_REPRESENTATION);
+        verifyPiece(Piece.createBlackBishop(), Piece.BLACK_COLOR, Piece.BLACK_BISHOP_REPRESENTATION);
+        verifyPiece(Piece.createWhiteKnight(), Piece.WHITE_COLOR, Piece.WHITE_KNIGHT_REPRESENTATION);
+        verifyPiece(Piece.createBlackKnight(), Piece.BLACK_COLOR, Piece.BLACK_KNIGHT_REPRESENTATION);
+        verifyPiece(Piece.createWhitePawn(), Piece.WHITE_COLOR, Piece.WHITE_PAWN_REPRESENTATION);
+        verifyPiece(Piece.createBlackPawn(), Piece.BLACK_COLOR, Piece.BLACK_PAWN_REPRESENTATION);
     }
 
-    @Test
-    @DisplayName("매개변수가 없다면 흰색 폰 생성")
-    public void createBasicConstructor() {
-        Piece pawn = new Piece();
-        assertEquals(Piece.WHITE_COLOR, pawn.getColor());
-        assertEquals(Piece.WHITE_REPRESENTATION, pawn.getRepresentation());
-    }
-
-    private void verifyPawn(final String color, final String representation) {
-        Piece pawn = new Piece(color, representation);
-        assertEquals(color, pawn.getColor());
-        assertEquals(representation, pawn.getRepresentation());
+    private void verifyPiece(final Piece piece, final String color, final char representation) {
+        assertEquals(color, piece.getColor());
+        assertEquals(representation, piece.getRepresentation());
     }
 
 }
