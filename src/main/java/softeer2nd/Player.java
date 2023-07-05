@@ -12,8 +12,7 @@ public class Player {
         System.out.println("Enter 'Start' to begin the game");
         while(isContinue) {
             String command = scanner.nextLine();
-            command = command.toLowerCase();
-            gameAction(command);
+            gameAction(command.toLowerCase());
         }
     }
 
