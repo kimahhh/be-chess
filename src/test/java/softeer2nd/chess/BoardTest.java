@@ -73,4 +73,12 @@ class BoardTest {
         assertEquals(2, board.pieceCount(Color.BLACK, Type.ROOK));
         assertEquals(1, board.pieceCount(Color.BLACK, Type.QUEEN));
     }
+
+    @Test
+    @DisplayName("좌표를 인자로 받아 해당 좌표의 기물을 조회할 수 있어야 한다")
+    public void getPieceWithCoordinate() {
+        board.initialize();
+        assertEquals(board.getBoard().get(0).rank.get(0), board.getPiece("a8"));
+        assertEquals(board.getBoard().get(7).rank.get(4), board.getPiece("e1"));
+    }
 }
