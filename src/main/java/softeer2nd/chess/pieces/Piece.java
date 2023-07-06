@@ -51,6 +51,17 @@ public class Piece {
         }
     }
 
+    public static Piece createPiece(char representation) {
+        boolean isBlack = Character.isUpperCase(representation);
+        representation = Character.toLowerCase(representation);
+        for (Type type : Type.values()) {
+            if (representation == type.representation) {
+                return type == Type.NO_PIECE ? createBlank() : createPiece(isBlack ? Color.BLACK : Color.WHITE, type);
+            }
+        }
+        throw new IllegalArgumentException("잘못된 식별 문자 입니다");
+    }
+
     private static Piece createWhite(Type type) {
         switch (type) {
             case KING:
