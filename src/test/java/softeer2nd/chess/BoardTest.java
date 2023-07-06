@@ -102,7 +102,20 @@ class BoardTest {
     @DisplayName("좌표를 인자로 받아 해당 좌표의 기물을 조회할 수 있어야 한다")
     public void getPieceWithCoordinate() {
         board.initializeBasic();
-        assertEquals(board.getBoard().get(0).rank.get(0), board.getPiece("a8"));
-        assertEquals(board.getBoard().get(7).rank.get(4), board.getPiece("e1"));
+        assertEquals(board.getBoard().get(0).rank.get(0), board.findPiece("a8"));
+        assertEquals(board.getBoard().get(7).rank.get(4), board.findPiece("e1"));
+    }
+
+    @Test
+    @DisplayName("좌표와 기물을 인자로 받아 해당 좌표로 해당 기물을 이동할 수 있어야 한다")
+    public void move() {
+        board.initializeEmpty();
+
+        String position = "b5";
+        Piece piece = createPiece(Color.BLACK, Type.ROOK);
+        board.move(position, piece);
+
+        assertEquals(piece, board.findPiece(position));
+        System.out.println(board.showBoard());
     }
 }
