@@ -79,7 +79,7 @@ public class Board {
         initialize(basic);
     }
 
-    public void initializeNoPiece() {
+    public void initializeEmpty() {
         String noPiece = "........" +
                 "........" +
                 "........" +

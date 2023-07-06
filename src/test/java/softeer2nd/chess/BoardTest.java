@@ -47,7 +47,7 @@ class BoardTest {
                 board.showBoard()
         );
 
-        board.initializeNoPiece();
+        board.initializeEmpty();
         assertEquals(blackRank + blackRank + blackRank + blackRank +
                 blackRank + blackRank + blackRank + blackRank,
                 board.showBoard());
