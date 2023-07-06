@@ -6,12 +6,19 @@ public class Piece {
     }
 
     public enum Type {
-        PAWN('p'), ROOK('r'), KNIGHT('n'), BISHOP('b'),
-        QUEEN('q'), KING('k'), NO_PIECE('.');
+        PAWN('p', 1.0),
+        ROOK('r', 5.0),
+        KNIGHT('n', 2.5),
+        BISHOP('b', 3),
+        QUEEN('q', 9),
+        KING('k', 0.0),
+        NO_PIECE('.', 0.0);
 
-        private char representation;
-        Type(char representation) {
+        private final char representation;
+        private final double defaultPoint;
+        Type(char representation, double defaultPoint) {
             this.representation = representation;
+            this.defaultPoint = defaultPoint;
         }
 
         public char getWhiteRepresentation() {
@@ -123,5 +130,8 @@ public class Piece {
             default:
                 throw new IllegalArgumentException("색깔이 적절하지 않습니다.");
         }
+    }
+    public double getPoint() {
+        return type.defaultPoint;
     }
 }
