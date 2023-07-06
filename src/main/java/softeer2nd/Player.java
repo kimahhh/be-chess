@@ -30,7 +30,7 @@ public class Player {
     private static void startGame() {
         System.out.println("Game is start");
         Board board = new Board();
-        board.initialize();
+        board.initializeBasic();
         System.out.println(board.showBoard());
     }
 
