@@ -48,6 +48,8 @@ class PieceTest {
         verifyBlackPiece(createPiece(Color.BLACK, Type.BISHOP));
         verifyBlackPiece(createPiece(Color.BLACK, Type.KNIGHT));
         verifyBlackPiece(createPiece(Color.BLACK, Type.PAWN));
+
+        verifyBlank(createBlank());
     }
 
     private void verifyWhitePiece(final Piece piece) {
@@ -57,6 +59,11 @@ class PieceTest {
     private void verifyBlackPiece(final Piece piece) {
         assertTrue(piece.isBlack());
         assertFalse(piece.isWhite());
+    }
+    private void verifyBlank(final Piece piece) {
+        assertFalse(piece.isWhite());
+        assertFalse(piece.isBlack());
+        assertEquals(Type.NO_PIECE, piece.getType());
     }
 
     @Test
