@@ -43,10 +43,10 @@ public class Board {
 
     public void initialize() {
         pieces.clear();
-        ArrayList<Object> blackPieces = createPieces(BLACK_COLOR);
-        ArrayList<Object> blackPawns = createPawns(BLACK_COLOR, PAWN);
-        ArrayList<Object> whitePawns = createPawns(WHITE_COLOR, PAWN);
-        ArrayList<Object> whitePieces = createPieces(WHITE_COLOR);
+        ArrayList<Object> blackPieces = createPieces(Color.BLACK);
+        ArrayList<Object> blackPawns = createPawns(Color.BLACK);
+        ArrayList<Object> whitePawns = createPawns(Color.WHITE);
+        ArrayList<Object> whitePieces = createPieces(Color.WHITE);
 
         initialBoard();
         addPiecesToBoard(0, blackPieces);
@@ -55,65 +55,25 @@ public class Board {
         addPiecesToBoard(7, whitePieces);
     }
 
-    private ArrayList<Object> createPawns(String color, String name) {
+    private ArrayList<Object> createPawns(Color color) {
         ArrayList<Object> localPawns = new ArrayList<>();
         for (int i = 0;i < BOARD_SIZE;i++) {
-            Piece piece = null;
-            if (color.equals(WHITE_COLOR)) {
-                piece = createWhitePawn();
-            }
-            else if (color.equals(BLACK_COLOR)) {
-                piece = createBlackPawn();
-            }
+            Piece piece = createPiece(color, Type.PAWN);
             pieces.add(piece);
             localPawns.add(piece);
         }
         return localPawns;
     }
 
-    private ArrayList<Object> createPieces(String color) {
+    private ArrayList<Object> createPieces(Color color) {
         ArrayList<Object> localPieces = new ArrayList<>();
-        String[] piecesName = new String[]{ROOK, KNIGHT, BISHOP, QUEEN, KING, BISHOP, KNIGHT, ROOK};
-        for (String pieceName : piecesName) {
-            Piece piece = createPiece(color, pieceName);
+        Type[] typeNames = new Type[]{Type.ROOK, Type.KNIGHT, Type.BISHOP, Type.QUEEN, Type.KING, Type.BISHOP, Type.KNIGHT, Type.ROOK};
+        for (Type type : typeNames) {
+            Piece piece = createPiece(color, type);
             pieces.add(piece);
             localPieces.add(piece);
         }
         return localPieces;
-    }
-
-    private Piece createPiece(String color, String name) {
-        for (int i = 0;i < BOARD_SIZE;i++) {
-            if (color.equals(WHITE_COLOR)) {
-                switch (name) {
-                    case KING:
-                        return createWhiteKing();
-                    case QUEEN:
-                        return createWhiteQueen();
-                    case ROOK:
-                        return createWhiteRook();
-                    case BISHOP:
-                        return createWhiteBishop();
-                    case KNIGHT:
-                        return createWhiteKnight();
-                }
-            }
-            else if (color.equals(BLACK_COLOR)) {
-                switch (name) {
-                    case KING:
-                        return createBlackKing();
-                    case QUEEN:
-                        return createBlackQueen();
-                    case ROOK:
-                        return createBlackRook();
-                    case BISHOP:
-                        return createBlackBishop();
-                    case KNIGHT:
-                        return createBlackKnight();
-                }
-            }
-        }
-        return null;
     }
 
     private ArrayList<Object> createEmptyRow() {

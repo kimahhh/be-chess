@@ -60,16 +60,27 @@ public class Piece {
     }
 
     public boolean isBlack() {
-        return this.color.equals(BLACK_COLOR);
+        return this.color.equals(Color.BLACK);
     }
     public boolean isWhite() {
-        return this.color.equals(WHITE_COLOR);
+        return this.color.equals(Color.WHITE);
     }
 
-    public String getColor() {
+    public Color getColor() {
         return this.color;
     }
+    public Type getType() {
+        return this.type;
+    }
     public char getRepresentation() {
-        return this.representation;
+        switch (this.color) {
+            case WHITE:
+            case NO_COLOR:
+                return type.getWhiteRepresentation();
+            case BLACK:
+                return type.getBlackRepresentation();
+            default:
+                throw new IllegalArgumentException("색깔이 적절하지 않습니다.");
+        }
     }
 }
