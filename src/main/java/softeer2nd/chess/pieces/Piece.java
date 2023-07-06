@@ -36,87 +36,27 @@ public class Piece {
         this.type = type;
     }
 
-        if (color.equals(WHITE_COLOR)) {
-            switch (name) {
-                case KING:
-                    this.representation = WHITE_KING_REPRESENTATION;
-                    break;
-                case QUEEN:
-                    this.representation = WHITE_QUEEN_REPRESENTATION;
-                    break;
-                case ROOK:
-                    this.representation = WHITE_ROOK_REPRESENTATION;
-                    break;
-                case BISHOP:
-                    this.representation = WHITE_BISHOP_REPRESENTATION;
-                    break;
-                case KNIGHT:
-                    this.representation = WHITE_KNIGHT_REPRESENTATION;
-                    break;
-                case PAWN:
-                    this.representation = WHITE_PAWN_REPRESENTATION;
-                    break;
-            }
+    public static Piece createBlank() {
+        return new Piece();
+    }
 
-        } else if (color.equals(BLACK_COLOR)) {
-            switch (name) {
-                case KING:
-                    this.representation = BLACK_KING_REPRESENTATION;
-                    break;
-                case QUEEN:
-                    this.representation = BLACK_QUEEN_REPRESENTATION;
-                    break;
-                case ROOK:
-                    this.representation = BLACK_ROOK_REPRESENTATION;
-                    break;
-                case BISHOP:
-                    this.representation = BLACK_BISHOP_REPRESENTATION;
-                    break;
-                case KNIGHT:
-                    this.representation = BLACK_KNIGHT_REPRESENTATION;
-                    break;
-                case PAWN:
-                    this.representation = BLACK_PAWN_REPRESENTATION;
-                    break;
-            }
+    public static Piece createPiece(Color color, Type type) {
+        switch (type) {
+            case KING:
+                return color.equals(Color.WHITE) ? King.createWhiteKing() : King.createBlackKing();
+            case QUEEN:
+                return color.equals(Color.WHITE) ? Queen.createWhiteQueen() : Queen.createBlackQueen();
+            case ROOK:
+                return color.equals(Color.WHITE) ? Rook.createWhiteRook() : Rook.createBlackRook();
+            case BISHOP:
+                return color.equals(Color.WHITE) ? Bishop.createWhiteBishop() : Bishop.createBlackBishop();
+            case KNIGHT:
+                return color.equals(Color.WHITE) ? Knight.createWhiteKnight() : Knight.createBlackKnight();
+            case PAWN:
+                return color.equals(Color.WHITE) ? Pawn.createWhitePawn() : Pawn.createBlackPawn();
+            default:
+                throw new IllegalArgumentException("색깔과 종류가 적절하지 않습니다.");
         }
-    }
-
-    public static Piece createWhiteKing() {
-        return new Piece(WHITE_COLOR, KING);
-    }
-    public static Piece createBlackKing() {
-        return new Piece(BLACK_COLOR, KING);
-    }
-    public static Piece createWhiteQueen() {
-        return new Piece(WHITE_COLOR, QUEEN);
-    }
-    public static Piece createBlackQueen() {
-        return new Piece(BLACK_COLOR, QUEEN);
-    }
-    public static Piece createWhiteRook() {
-        return new Piece(WHITE_COLOR, ROOK);
-    }
-    public static Piece createBlackRook() {
-        return new Piece(BLACK_COLOR, ROOK);
-    }
-    public static Piece createWhiteBishop() {
-        return new Piece(WHITE_COLOR, BISHOP);
-    }
-    public static Piece createBlackBishop() {
-        return new Piece(BLACK_COLOR, BISHOP);
-    }
-    public static Piece createWhiteKnight() {
-        return new Piece(WHITE_COLOR, KNIGHT);
-    }
-    public static Piece createBlackKnight() {
-        return new Piece(BLACK_COLOR, KNIGHT);
-    }
-    public static Piece createWhitePawn() {
-        return new Piece(WHITE_COLOR, PAWN);
-    }
-    public static Piece createBlackPawn() {
-        return new Piece(BLACK_COLOR, PAWN);
     }
 
     public boolean isBlack() {
