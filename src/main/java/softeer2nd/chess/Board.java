@@ -23,11 +23,17 @@ public class Board {
     }
 
     public int pieceCount() {
-        return pieces.size();
+        return (int) board.stream()
+                .flatMap(rank -> rank.rank.stream())
+                .filter(piece -> !piece.getType().equals(Type.NO_PIECE))
+                .count();
     }
 
-    public Piece findPawn(int index) {
-        return pieces.get(index);
+    public int pieceCount(Color color, Type type) {
+        return (int) board.stream()
+                .flatMap(rank -> rank.rank.stream())
+                .filter(piece -> piece.getColor().equals(color) && piece.getType().equals(type))
+                .count();
     }
 
     public String getRankResult(int index) {
