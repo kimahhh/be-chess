@@ -43,7 +43,7 @@ public class Board {
 
     public Piece getPiece(String coordinate) {
         int x = getX(coordinate.charAt(0));
-        int y = 8 - getY(coordinate.charAt(1));
+        int y = BOARD_SIZE - getY(coordinate.charAt(1));
         return board.get(y).rank.get(x);
     }
 
