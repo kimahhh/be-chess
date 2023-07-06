@@ -120,4 +120,57 @@ class BoardTest {
         assertEquals(piece, board.findPiece(position));
         System.out.println(board.showBoard());
     }
+
+    @Test
+    @DisplayName("같은 세로줄에 같은 색의 폰이 없는 경우의 점수를 계산할 수 있다")
+    public void calculatePointNoSameLinePawn() {
+        String boardString = ".KR....." +
+                "P.PB...." +
+                ".P..Q..." +
+                "........" +
+                ".....nq." +
+                ".....p.p" +
+                "......p." +
+                "....rk..";
+        board.initialize(boardString);
+        assertEquals(20, board.calculatePoint(Color.BLACK), 0.01);
+        assertEquals(19.5, board.calculatePoint(Color.WHITE), 0.01);
+    }
+
+    @Test
+    @DisplayName("같은 세로줄에 같은 색의 폰이 있는 경우의 점수를 계산할 수 있다")
+    public void calculatePointYesSameLinePawn() {
+        String boardString = ".KR....." +
+                "P.PB...." +
+                ".P..Q..." +
+                "........" +
+                ".....nq." +
+                ".....p.p" +
+                ".....pp." +
+                "....rk..";
+        board.initialize(boardString);
+        assertEquals(20, board.calculatePoint(Color.BLACK), 0.01);
+        assertEquals(19.5, board.calculatePoint(Color.WHITE), 0.01);
+    }
+
+    @Test
+    @DisplayName("특정 상태의 체스판의 점수를 계산할 수 있다")
+    public void calculatePoint() {
+        board.initializeEmpty();
+
+        board.move("b6", createPiece(Color.BLACK, Type.PAWN));
+        board.move("e6", createPiece(Color.BLACK, Type.QUEEN));
+        board.move("b8", createPiece(Color.BLACK, Type.KING));
+        board.move("c8", createPiece(Color.BLACK, Type.ROOK));
+
+        board.move("f2", createPiece(Color.WHITE, Type.PAWN));
+        board.move("g2", createPiece(Color.WHITE, Type.PAWN));
+        board.move("e1", createPiece(Color.WHITE, Type.ROOK));
+        board.move("f1", createPiece(Color.WHITE, Type.KING));
+
+        assertEquals(15.0, board.calculatePoint(Color.BLACK), 0.01);
+        assertEquals(7.0, board.calculatePoint(Color.WHITE), 0.01);
+
+        System.out.println(board.showBoard());
+    }
 }
