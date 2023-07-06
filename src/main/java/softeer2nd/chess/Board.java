@@ -100,6 +100,17 @@ public class Board {
         board.add(index, pawns);
     }
 
+    public void initialize(String boardString) {
+        board.clear();
+        for(int i = 0;i < BOARD_SIZE;i++) {
+            Rank rank = new Rank();
+            for (int j = 0;j < BOARD_SIZE;j++) {
+                rank.rank.add(createPiece(boardString.charAt(i * BOARD_SIZE + j)));
+            }
+            board.add(rank);
+        }
+    }
+
     public String showBoard() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Rank rank: board) {
