@@ -9,42 +9,45 @@ import static softeer2nd.chess.pieces.Piece.*;
 class PieceTest {
 
     @Test
-    @DisplayName("기물 생성")
+    @DisplayName("색과 종류를 입력받아 기물을 생성할 수 있어야 한다")
     public void create() {
-        verifyPiece(Piece.createWhiteKing(), WHITE_COLOR, WHITE_KING_REPRESENTATION);
-        verifyPiece(Piece.createBlackKing(), BLACK_COLOR, BLACK_KING_REPRESENTATION);
-        verifyPiece(Piece.createWhiteQueen(), WHITE_COLOR, WHITE_QUEEN_REPRESENTATION);
-        verifyPiece(Piece.createBlackQueen(), BLACK_COLOR, BLACK_QUEEN_REPRESENTATION);
-        verifyPiece(Piece.createWhiteRook(), WHITE_COLOR, WHITE_ROOK_REPRESENTATION);
-        verifyPiece(Piece.createBlackRook(), BLACK_COLOR, BLACK_ROOK_REPRESENTATION);
-        verifyPiece(Piece.createWhiteBishop(), WHITE_COLOR, WHITE_BISHOP_REPRESENTATION);
-        verifyPiece(Piece.createBlackBishop(), BLACK_COLOR, BLACK_BISHOP_REPRESENTATION);
-        verifyPiece(Piece.createWhiteKnight(), WHITE_COLOR, WHITE_KNIGHT_REPRESENTATION);
-        verifyPiece(Piece.createBlackKnight(), BLACK_COLOR, BLACK_KNIGHT_REPRESENTATION);
-        verifyPiece(Piece.createWhitePawn(), WHITE_COLOR, WHITE_PAWN_REPRESENTATION);
-        verifyPiece(Piece.createBlackPawn(), BLACK_COLOR, BLACK_PAWN_REPRESENTATION);
+        verifyCreatePiece(createPiece(Color.WHITE, Type.KING), Color.WHITE, Type.KING);
+        verifyCreatePiece(createPiece(Color.BLACK, Type.KING), Color.BLACK, Type.KING);
+        verifyCreatePiece(createPiece(Color.WHITE, Type.QUEEN), Color.WHITE, Type.QUEEN);
+        verifyCreatePiece(createPiece(Color.BLACK, Type.QUEEN), Color.BLACK, Type.QUEEN);
+        verifyCreatePiece(createPiece(Color.WHITE, Type.ROOK), Color.WHITE, Type.ROOK);
+        verifyCreatePiece(createPiece(Color.BLACK, Type.ROOK), Color.BLACK, Type.ROOK);
+        verifyCreatePiece(createPiece(Color.WHITE, Type.BISHOP), Color.WHITE, Type.BISHOP);
+        verifyCreatePiece(createPiece(Color.BLACK, Type.BISHOP), Color.BLACK, Type.BISHOP);
+        verifyCreatePiece(createPiece(Color.WHITE, Type.KNIGHT), Color.WHITE, Type.KNIGHT);
+        verifyCreatePiece(createPiece(Color.BLACK, Type.KNIGHT), Color.BLACK, Type.KNIGHT);
+        verifyCreatePiece(createPiece(Color.WHITE, Type.PAWN), Color.WHITE, Type.PAWN);
+        verifyCreatePiece(createPiece(Color.BLACK, Type.PAWN), Color.BLACK, Type.PAWN);
+        verifyCreatePiece(createBlank(), Color.NO_COLOR, Type.NO_PIECE);
     }
 
-    private void verifyPiece(final Piece piece, final String color, final char representation) {
+    private void verifyCreatePiece(final Piece piece, final Color color, final Type type) {
         assertEquals(color, piece.getColor());
-        assertEquals(representation, piece.getRepresentation());
+        assertEquals(type, piece.getType());
+        assertEquals(type.getWhiteRepresentation(), piece.getType().getWhiteRepresentation());
+        assertEquals(type.getBlackRepresentation(), piece.getType().getBlackRepresentation());
     }
 
     @Test
-    @DisplayName("기물 색깔 검증")
+    @DisplayName("색과 종류를 입력받아 생성된 기물의 색깔을 확인할 수 있어야 한다")
     public void color() {
-        verifyWhitePiece(createWhiteKing());
-        verifyWhitePiece(createWhiteQueen());
-        verifyWhitePiece(createWhiteRook());
-        verifyWhitePiece(createWhiteBishop());
-        verifyWhitePiece(createWhiteKnight());
-        verifyWhitePiece(createWhitePawn());
-        verifyBlackPiece(createBlackKing());
-        verifyBlackPiece(createBlackQueen());
-        verifyBlackPiece(createBlackRook());
-        verifyBlackPiece(createBlackBishop());
-        verifyBlackPiece(createBlackKnight());
-        verifyBlackPiece(createBlackPawn());
+        verifyWhitePiece(createPiece(Color.WHITE, Type.KING));
+        verifyWhitePiece(createPiece(Color.WHITE, Type.QUEEN));
+        verifyWhitePiece(createPiece(Color.WHITE, Type.ROOK));
+        verifyWhitePiece(createPiece(Color.WHITE, Type.BISHOP));
+        verifyWhitePiece(createPiece(Color.WHITE, Type.KNIGHT));
+        verifyWhitePiece(createPiece(Color.WHITE, Type.PAWN));
+        verifyBlackPiece(createPiece(Color.BLACK, Type.KING));
+        verifyBlackPiece(createPiece(Color.BLACK, Type.QUEEN));
+        verifyBlackPiece(createPiece(Color.BLACK, Type.ROOK));
+        verifyBlackPiece(createPiece(Color.BLACK, Type.BISHOP));
+        verifyBlackPiece(createPiece(Color.BLACK, Type.KNIGHT));
+        verifyBlackPiece(createPiece(Color.BLACK, Type.PAWN));
     }
 
     private void verifyWhitePiece(final Piece piece) {
