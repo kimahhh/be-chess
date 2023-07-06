@@ -4,6 +4,7 @@ import softeer2nd.chess.pieces.Piece;
 
 import java.util.ArrayList;
 
+import static softeer2nd.chess.Position.*;
 import static softeer2nd.chess.pieces.Piece.*;
 import static softeer2nd.utils.StringUtils.appendNewLine;
 
@@ -34,6 +35,16 @@ public class Board {
                 .flatMap(rank -> rank.rank.stream())
                 .filter(piece -> piece.getColor().equals(color) && piece.getType().equals(type))
                 .count();
+    }
+
+    public ArrayList<Rank> getBoard() {
+        return this.board;
+    }
+
+    public Piece getPiece(String coordinate) {
+        int x = getX(coordinate.charAt(0));
+        int y = 8 - getY(coordinate.charAt(1));
+        return board.get(y).rank.get(x);
     }
 
     public String getRankResult(int index) {
