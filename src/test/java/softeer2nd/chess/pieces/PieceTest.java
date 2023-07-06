@@ -59,4 +59,18 @@ class PieceTest {
         assertFalse(piece.isWhite());
     }
 
+    @Test
+    @DisplayName("흰색 기물일 때는 소문자, 검은색 기물일 때는 대문자 식별 문자가 출력되어야 한다")
+    public void getRepresentationPerPiece() {
+        Piece whitePawn = createPiece(Color.WHITE, Type.PAWN);
+        verifyRepresentation('p', whitePawn);
+
+        Piece blackPawn = createPiece(Color.BLACK, Type.PAWN);
+        verifyRepresentation('P', blackPawn);
+    }
+
+    private void verifyRepresentation(final char representation, final Piece piece) {
+        assertEquals(representation, piece.getRepresentation());
+    }
+
 }
