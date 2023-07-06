@@ -7,7 +7,7 @@ public class Piece {
 
     public enum Type {
         PAWN('p'), ROOK('r'), KNIGHT('n'), BISHOP('b'),
-        QUEEN('q'), KING('k'), NO_PIECE('o');
+        QUEEN('q'), KING('k'), NO_PIECE('.');
 
         private char representation;
         Type(char representation) {
