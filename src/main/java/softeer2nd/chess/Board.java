@@ -99,4 +99,29 @@ public class Board {
         }
         return stringBuilder.toString();
     }
+
+    public double calculatePoint(Color color) {
+        return board.stream()
+                .flatMap(rank -> rank.rank.stream())
+                .filter(piece -> piece.getColor().equals(color))
+                .mapToDouble(Piece::getPoint)
+                .sum() - countSameLinePawn(color) * 0.5;
+    }
+
+    private int countSameLinePawn(Color color) {
+        int num = 0;
+        for (int x = 0;x < BOARD_SIZE;x++) {
+            int cnt = 0;
+            for (Rank rank : board) {
+                Piece piece = rank.rank.get(x);
+                if (piece.getType().equals(Type.PAWN) && piece.getColor().equals(color)) {
+                    cnt++;
+                }
+            }
+            if (cnt >= 2) {
+                num += cnt;
+            }
+        }
+        return num;
+    }
 }
