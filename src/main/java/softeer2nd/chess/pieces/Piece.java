@@ -26,9 +26,15 @@ public class Piece {
     private Color color;
     private Type type;
 
-    private Piece(String color, String name) {
+    private Piece() {
+        this.color = Color.NO_COLOR;
+        this.type = Type.NO_PIECE;
+    }
+
+    protected Piece(Color color, Type type) {
         this.color = color;
-        this.name = name;
+        this.type = type;
+    }
 
         if (color.equals(WHITE_COLOR)) {
             switch (name) {
