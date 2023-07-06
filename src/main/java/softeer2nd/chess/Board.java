@@ -10,17 +10,10 @@ import static softeer2nd.utils.StringUtils.appendNewLine;
 
 public class Board {
     private static final int BOARD_SIZE = 8;
-    private static final int EMPTY_ROW_NUM = 4;
     private ArrayList<Rank> board;
-    private ArrayList<Piece> pieces;
 
     public Board() {
         board = new ArrayList<>();
-        pieces = new ArrayList<>();
-    }
-
-    public void add(Piece pawn) {
-        pieces.add(pawn);
     }
 
     public int pieceCount() {
