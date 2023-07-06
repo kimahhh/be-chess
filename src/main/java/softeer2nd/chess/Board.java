@@ -10,7 +10,7 @@ import static softeer2nd.utils.StringUtils.appendNewLine;
 public class Board {
     private static final int BOARD_SIZE = 8;
     private static final int EMPTY_ROW_NUM = 4;
-    private ArrayList<ArrayList<Object>> board;
+    private ArrayList<Rank> board;
     private ArrayList<Piece> pieces;
 
     public Board() {
@@ -30,23 +30,21 @@ public class Board {
         return pieces.get(index);
     }
 
-    public String getRowResult(int index) {
+    public String getRankResult(int index) {
+        index = 8 - index;
         StringBuilder stringBuilder = new StringBuilder();
-        for (Object obj : board.get(index)) {
-            if (obj instanceof Piece) {
-                Piece piece = (Piece) obj;
-                stringBuilder.append(piece.getRepresentation());
-            }
+        for (Piece piece : board.get(index).rank) {
+            stringBuilder.append(piece.getRepresentation());
         }
         return stringBuilder.toString();
     }
 
     public void initialize() {
         pieces.clear();
-        ArrayList<Object> blackPieces = createPieces(Color.BLACK);
-        ArrayList<Object> blackPawns = createPawns(Color.BLACK);
-        ArrayList<Object> whitePawns = createPawns(Color.WHITE);
-        ArrayList<Object> whitePieces = createPieces(Color.WHITE);
+        Rank blackPieces = createPieces(Color.BLACK);
+        Rank blackPawns = createPawns(Color.BLACK);
+        Rank whitePawns = createPawns(Color.WHITE);
+        Rank whitePieces = createPieces(Color.WHITE);
 
         initialBoard();
         addPiecesToBoard(0, blackPieces);
@@ -55,58 +53,52 @@ public class Board {
         addPiecesToBoard(7, whitePieces);
     }
 
-    private ArrayList<Object> createPawns(Color color) {
-        ArrayList<Object> localPawns = new ArrayList<>();
+    private Rank createPawns(Color color) {
+        Rank localPawns = new Rank();
         for (int i = 0;i < BOARD_SIZE;i++) {
             Piece piece = createPiece(color, Type.PAWN);
             pieces.add(piece);
-            localPawns.add(piece);
+            localPawns.rank.add(piece);
         }
         return localPawns;
     }
 
-    private ArrayList<Object> createPieces(Color color) {
-        ArrayList<Object> localPieces = new ArrayList<>();
+    private Rank createPieces(Color color) {
+        Rank localPieces = new Rank();
         Type[] typeNames = new Type[]{Type.ROOK, Type.KNIGHT, Type.BISHOP, Type.QUEEN, Type.KING, Type.BISHOP, Type.KNIGHT, Type.ROOK};
         for (Type type : typeNames) {
             Piece piece = createPiece(color, type);
             pieces.add(piece);
-            localPieces.add(piece);
+            localPieces.rank.add(piece);
         }
         return localPieces;
     }
 
-    private ArrayList<Object> createEmptyRow() {
-        ArrayList<Object> empty = new ArrayList<>();
+    private Rank createEmptyRank() {
+        Rank empty = new Rank();
         for (int i = 0;i < BOARD_SIZE;i++) {
-            empty.add(".");
+            empty.rank.add(createBlank());
         }
         return empty;
     }
 
     private void initialBoard() {
         board.clear();
-        ArrayList<Object> empty = createEmptyRow();
+        Rank empty = createEmptyRank();
         for (int i = 0;i < EMPTY_ROW_NUM;i++) {
             board.add(empty);
         }
     }
 
-    private void addPiecesToBoard(int index, ArrayList<Object> pawns) {
+    private void addPiecesToBoard(int index, Rank pawns) {
         board.add(index, pawns);
     }
 
     public String showBoard() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (ArrayList<Object> line: board) {
-            for (Object obj : line) {
-                if (obj instanceof Piece) {
-                    Piece pawn = (Piece) obj;
-                    stringBuilder.append(pawn.getRepresentation());
-                }
-                else {
-                    stringBuilder.append(obj);
-                }
+        for (Rank rank: board) {
+            for (Piece piece : rank.rank) {
+                stringBuilder.append(piece.getRepresentation());
             }
             appendNewLine(stringBuilder);
         }
