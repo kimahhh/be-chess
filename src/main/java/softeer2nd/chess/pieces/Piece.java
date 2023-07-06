@@ -23,8 +23,8 @@ public class Piece {
         }
     }
 
-    private Color color;
-    private Type type;
+    private final Color color;
+    private final Type type;
 
     private Piece() {
         this.color = Color.NO_COLOR;
