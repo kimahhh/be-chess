@@ -1,30 +1,30 @@
 package softeer2nd.chess.pieces;
 
 public class Piece {
-    public static final String WHITE_COLOR = "white";
-    public static final String BLACK_COLOR = "black";
-    public static final String KING = "King";
-    public static final char WHITE_KING_REPRESENTATION = 'k';
-    public static final char BLACK_KING_REPRESENTATION = 'K';
-    public static final String QUEEN = "Queen";
-    public static final char WHITE_QUEEN_REPRESENTATION = 'q';
-    public static final char BLACK_QUEEN_REPRESENTATION = 'Q';
-    public static final String ROOK = "Rook";
-    public static final char WHITE_ROOK_REPRESENTATION = 'r';
-    public static final char BLACK_ROOK_REPRESENTATION = 'R';
-    public static final String BISHOP = "Bishop";
-    public static final char WHITE_BISHOP_REPRESENTATION = 'b';
-    public static final char BLACK_BISHOP_REPRESENTATION = 'B';
-    public static final String KNIGHT = "Knight";
-    public static final char WHITE_KNIGHT_REPRESENTATION = 'n';
-    public static final char BLACK_KNIGHT_REPRESENTATION = 'N';
-    public static final String PAWN = "Pawn";
-    public static final char WHITE_PAWN_REPRESENTATION = 'p';
-    public static final char BLACK_PAWN_REPRESENTATION = 'P';
+    public enum Color {
+        WHITE, BLACK, NO_COLOR;
+    }
 
-    private String color;
-    private String name;
-    private char representation;
+    public enum Type {
+        PAWN('p'), ROOK('r'), KNIGHT('n'), BISHOP('b'),
+        QUEEN('q'), KING('k'), NO_PIECE('o');
+
+        private char representation;
+        Type(char representation) {
+            this.representation = representation;
+        }
+
+        public char getWhiteRepresentation() {
+            return this.representation;
+        }
+
+        public char getBlackRepresentation() {
+            return Character.toUpperCase(this.representation);
+        }
+    }
+
+    private Color color;
+    private Type type;
 
     private Piece(String color, String name) {
         this.color = color;
