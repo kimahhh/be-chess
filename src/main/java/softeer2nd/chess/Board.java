@@ -56,61 +56,6 @@ public class Board {
         return stringBuilder.toString();
     }
 
-    public void initialize() {
-        pieces.clear();
-        Rank blackPieces = createPiecesRank(Color.BLACK);
-        Rank blackPawns = createPawnsRank(Color.BLACK);
-        Rank whitePawns = createPawnsRank(Color.WHITE);
-        Rank whitePieces = createPiecesRank(Color.WHITE);
-
-        initialBoard();
-        addPiecesToBoard(0, blackPieces);
-        addPiecesToBoard(1, blackPawns);
-        addPiecesToBoard(6, whitePawns);
-        addPiecesToBoard(7, whitePieces);
-    }
-
-    private Rank createPawnsRank(Color color) {
-        Rank localPawns = new Rank();
-        for (int i = 0;i < BOARD_SIZE;i++) {
-            Piece piece = createPiece(color, Type.PAWN);
-            pieces.add(piece);
-            localPawns.rank.add(piece);
-        }
-        return localPawns;
-    }
-
-    private Rank createPiecesRank(Color color) {
-        Rank localPieces = new Rank();
-        Type[] typeNames = new Type[]{Type.ROOK, Type.KNIGHT, Type.BISHOP, Type.QUEEN, Type.KING, Type.BISHOP, Type.KNIGHT, Type.ROOK};
-        for (Type type : typeNames) {
-            Piece piece = createPiece(color, type);
-            pieces.add(piece);
-            localPieces.rank.add(piece);
-        }
-        return localPieces;
-    }
-
-    private Rank createEmptyRank() {
-        Rank empty = new Rank();
-        for (int i = 0;i < BOARD_SIZE;i++) {
-            empty.rank.add(createBlank());
-        }
-        return empty;
-    }
-
-    private void initialBoard() {
-        board.clear();
-        Rank empty = createEmptyRank();
-        for (int i = 0;i < EMPTY_ROW_NUM;i++) {
-            board.add(empty);
-        }
-    }
-
-    private void addPiecesToBoard(int index, Rank pawns) {
-        board.add(index, pawns);
-    }
-
     public void initialize(String boardString) {
         board.clear();
         for(int i = 0;i < BOARD_SIZE;i++) {
@@ -120,6 +65,30 @@ public class Board {
             }
             board.add(rank);
         }
+    }
+
+    public void initializeBasic() {
+        String basic = "RNBQKBNR" +
+                "PPPPPPPP" +
+                "........" +
+                "........" +
+                "........" +
+                "........" +
+                "pppppppp" +
+                "rnbqkbnr";
+        initialize(basic);
+    }
+
+    public void initializeNoPiece() {
+        String noPiece = "........" +
+                "........" +
+                "........" +
+                "........" +
+                "........" +
+                "........" +
+                "........" +
+                "........";
+        initialize(noPiece);
     }
 
     public String showBoard() {
