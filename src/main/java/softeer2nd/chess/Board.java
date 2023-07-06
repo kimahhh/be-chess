@@ -41,10 +41,10 @@ public class Board {
 
     public void initialize() {
         pieces.clear();
-        Rank blackPieces = createPieces(Color.BLACK);
-        Rank blackPawns = createPawns(Color.BLACK);
-        Rank whitePawns = createPawns(Color.WHITE);
-        Rank whitePieces = createPieces(Color.WHITE);
+        Rank blackPieces = createPiecesRank(Color.BLACK);
+        Rank blackPawns = createPawnsRank(Color.BLACK);
+        Rank whitePawns = createPawnsRank(Color.WHITE);
+        Rank whitePieces = createPiecesRank(Color.WHITE);
 
         initialBoard();
         addPiecesToBoard(0, blackPieces);
@@ -53,7 +53,7 @@ public class Board {
         addPiecesToBoard(7, whitePieces);
     }
 
-    private Rank createPawns(Color color) {
+    private Rank createPawnsRank(Color color) {
         Rank localPawns = new Rank();
         for (int i = 0;i < BOARD_SIZE;i++) {
             Piece piece = createPiece(color, Type.PAWN);
@@ -63,7 +63,7 @@ public class Board {
         return localPawns;
     }
 
-    private Rank createPieces(Color color) {
+    private Rank createPiecesRank(Color color) {
         Rank localPieces = new Rank();
         Type[] typeNames = new Type[]{Type.ROOK, Type.KNIGHT, Type.BISHOP, Type.QUEEN, Type.KING, Type.BISHOP, Type.KNIGHT, Type.ROOK};
         for (Type type : typeNames) {
