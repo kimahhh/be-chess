@@ -1,5 +1,6 @@
-package softeer2nd.chess;
+package softeer2nd.chess.Board;
 
+import softeer2nd.chess.Rank;
 import softeer2nd.chess.pieces.Piece;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import static softeer2nd.chess.pieces.Piece.*;
 import static softeer2nd.utils.StringUtils.appendNewLine;
 
 public class Board {
-    private static final int BOARD_SIZE = 8;
+    public static final int BOARD_SIZE = 8;
     private ArrayList<Rank> board;
 
     public Board() {

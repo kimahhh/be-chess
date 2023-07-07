@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import softeer2nd.chess.Board.Board;
 import softeer2nd.chess.pieces.*;
 
 import java.util.ArrayList;
