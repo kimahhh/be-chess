@@ -100,6 +100,34 @@ class BoardTest {
     }
 
     @Test
+    @DisplayName("Board의 상태를 좌표와 함께 출할 수 있어야 한다")
+    public void showBoardWithXY() {
+        String boardString = ".KR.....  8\n" +
+                "P.PB....  7\n" +
+                ".P..Q...  6\n" +
+                "........  5\n" +
+                ".....nq.  4\n" +
+                ".....p..  3\n" +
+                "......p.  2\n" +
+                "....rk..  1\n" +
+                "abcdefgh\n";
+        board.initialize(sample1);
+        assertEquals(boardString, board.showBoardWithXY());
+
+        String noPiece = "........  8\n" +
+                "........  7\n" +
+                "........  6\n" +
+                "........  5\n" +
+                "........  4\n" +
+                "........  3\n" +
+                "........  2\n" +
+                "........  1\n" +
+                "abcdefgh\n";
+        board.initialize(sample2);
+        assertEquals(noPiece, board.showBoardWithXY());
+    }
+
+    @Test
     @DisplayName("모든 기물의 개수를 반환할 수 있어야 한다")
     public void getPieceCount() {
         board.initializeBasic();
