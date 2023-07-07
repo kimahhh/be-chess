@@ -5,7 +5,9 @@ import softeer2nd.chess.Board;
 import java.util.Scanner;
 
 public class Player {
+    private static boolean isStart = false;
     private static boolean isContinue = true;
+    private static Board board;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -29,9 +31,10 @@ public class Player {
 
     private static void startGame() {
         System.out.println("Game is start");
-        Board board = new Board();
+        isStart = true;
+        board = new Board();
         board.initializeBasic();
-        System.out.println(board.showBoard());
+        System.out.println(board.showBoardWithXY());
     }
 
     private static void endGame() {
