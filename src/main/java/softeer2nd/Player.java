@@ -26,6 +26,17 @@ public class Player {
             case "end":
                 endGame();
                 break;
+            default:
+                if (command.startsWith("move")) {
+                    if (!isStart) {
+                        System.out.println("아직 게임이 시작하지 않았습니다");
+                        return;
+                    }
+                    movePiece(command);
+                }
+                else {
+                    System.out.println("적절한 명령어를 입력해주세요");
+                }
         }
     }
 
