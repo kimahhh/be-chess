@@ -114,6 +114,21 @@ public class Board {
         return stringBuilder.toString();
     }
 
+    public String showBoardWithXY() {
+        StringBuilder stringBuilder = new StringBuilder();
+        int y = 8;
+        for (Rank rank: board) {
+            for (Piece piece : rank.rank) {
+                stringBuilder.append(piece.getRepresentation());
+            }
+            stringBuilder.append("  ").append(y--);
+            appendNewLine(stringBuilder);
+        }
+        stringBuilder.append("abcdefgh");
+        appendNewLine(stringBuilder);
+        return stringBuilder.toString();
+    }
+
     public double calculatePoint(Color color) {
         return board.stream()
                 .flatMap(rank -> rank.rank.stream())
