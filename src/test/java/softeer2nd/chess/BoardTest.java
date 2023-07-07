@@ -140,6 +140,21 @@ class BoardTest {
     }
 
     @Test
+    @DisplayName("현재 좌표와 타겟 좌표를 인자로 받아 현재 좌표에 있는 기물을 타겟 좌표로 이동할 수 있어야 한다")
+    public void moveWithCoordinate() {
+        board.initializeBasic();
+        System.out.println(board.showBoard());
+
+        String sourcePosition = "b2";
+        String targetPosition = "b3";
+        board.move(sourcePosition, targetPosition);
+
+        assertEquals(createBlank(), board.findPiece(sourcePosition));
+        assertEquals(Pawn.createWhitePawn(), board.findPiece(targetPosition));
+        System.out.println(board.showBoard());
+    }
+
+    @Test
     @DisplayName("같은 세로줄에 같은 색의 폰이 없는 경우의 점수를 계산할 수 있다")
     public void calculatePointNoSameLinePawn() {
         board.initialize(noSameLinePawn);
