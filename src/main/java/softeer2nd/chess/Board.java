@@ -47,6 +47,18 @@ public class Board {
              .rank.set(getX(position.charAt(0)), piece);
     }
 
+    public void move(String sourcePosition, String targetPosition) {
+        Piece piece = findPiece(sourcePosition);
+        Piece diePiece = findPiece(targetPosition);
+        if (diePiece.getType().equals(Type.NO_PIECE)) {
+            move(sourcePosition, diePiece);
+        }
+        else {
+            move(sourcePosition, createBlank());
+        }
+        move(targetPosition, piece);
+    }
+
     public String getRankResult(int index) {
         index = 8 - index;
         StringBuilder stringBuilder = new StringBuilder();
