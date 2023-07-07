@@ -4,7 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import softeer2nd.chess.pieces.Piece;
+import softeer2nd.chess.pieces.*;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static softeer2nd.utils.StringUtils.appendNewLine;
@@ -172,5 +174,33 @@ class BoardTest {
         assertEquals(7.0, board.calculatePoint(Color.WHITE), 0.01);
 
         System.out.println(board.showBoard());
+    }
+
+    @Test
+    @DisplayName("기물의 점수가 낮은 순으로 정렬할 수 있어야 한다")
+    public void sortAscPieces() {
+        board.initialize(noSameLinePawn);
+
+        ArrayList<Piece> sortAscBlackPieces = board.sortAscPieces(Color.BLACK);
+        ArrayList<Piece> sortAscWhitePieces = board.sortAscPieces(Color.WHITE);
+
+        assertEquals(King.createBlackKing(), sortAscBlackPieces.get(0));
+        assertEquals(Queen.createBlackQueen(), sortAscBlackPieces.get(sortAscBlackPieces.size() - 1));
+        assertEquals(Pawn.createWhitePawn(), sortAscWhitePieces.get(1));
+        assertEquals(Rook.createWhiteRook(), sortAscWhitePieces.get(sortAscWhitePieces.size() - 2));
+    }
+
+    @Test
+    @DisplayName("기물의 점수가 높은 순으로 정렬할 수 있어야 한다")
+    public void sortDescPieces() {
+        board.initialize(yesSameLinePawn);
+
+        ArrayList<Piece> sortDescBlackPieces = board.sortDescPieces(Color.BLACK);
+        ArrayList<Piece> sortDescWhitePieces = board.sortDescPieces(Color.WHITE);
+
+        assertEquals(Queen.createBlackQueen(), sortDescBlackPieces.get(0));
+        assertEquals(King.createBlackKing(), sortDescBlackPieces.get(sortDescBlackPieces.size() - 1));
+        assertEquals(Rook.createWhiteRook(), sortDescWhitePieces.get(1));
+        assertEquals(Pawn.createWhitePawn(), sortDescWhitePieces.get(sortDescWhitePieces.size() - 2));
     }
 }
