@@ -41,4 +41,10 @@ public class Player {
         isContinue = false;
         System.out.println("Game is end");
     }
+
+    private static void movePiece(String command) {
+        String[] commands = command.split(" ");
+        board.move(commands[1], commands[2]);
+        System.out.println(board.showBoardWithXY());
+    }
 }
