@@ -3,6 +3,8 @@ package softeer2nd.chess;
 import softeer2nd.chess.pieces.Piece;
 
 import java.util.ArrayList;
+렬import java.util.Comparator;
+import java.util.stream.Collectors;
 
 import static softeer2nd.chess.Position.*;
 import static softeer2nd.chess.pieces.Piece.*;
@@ -123,5 +125,21 @@ public class Board {
             }
         }
         return num;
+    }
+
+    public ArrayList<Piece> sortAscPieces(Color color) {
+        return board.stream()
+                .flatMap(rank -> rank.rank.stream())
+                .filter(piece -> piece.getColor().equals(color))
+                .sorted(Comparator.comparingDouble(Piece::getPoint))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public ArrayList<Piece> sortDescPieces(Color color) {
+        return board.stream()
+                .flatMap(rank -> rank.rank.stream())
+                .filter(piece -> piece.getColor().equals(color))
+                .sorted(Comparator.comparingDouble(Piece::getPoint).reversed())
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }
