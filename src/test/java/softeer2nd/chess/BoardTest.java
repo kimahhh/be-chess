@@ -29,6 +29,22 @@ class BoardTest {
                             "........" +
                             "........" +
                             "........";
+    private String noSameLinePawn = ".KR....." +
+            "P.PB...." +
+            ".P..Q..." +
+            "........" +
+            ".....nq." +
+            ".....p.p" +
+            "......p." +
+            "....rk..";
+    private String yesSameLinePawn = ".KR....." +
+            "P.PB...." +
+            ".P..Q..." +
+            "........" +
+            ".....nq." +
+            ".....p.p" +
+            ".....pp." +
+            "....rk..";
 
     @BeforeEach
     public void setup() {
@@ -124,15 +140,7 @@ class BoardTest {
     @Test
     @DisplayName("같은 세로줄에 같은 색의 폰이 없는 경우의 점수를 계산할 수 있다")
     public void calculatePointNoSameLinePawn() {
-        String boardString = ".KR....." +
-                "P.PB...." +
-                ".P..Q..." +
-                "........" +
-                ".....nq." +
-                ".....p.p" +
-                "......p." +
-                "....rk..";
-        board.initialize(boardString);
+        board.initialize(noSameLinePawn);
         assertEquals(20, board.calculatePoint(Color.BLACK), 0.01);
         assertEquals(19.5, board.calculatePoint(Color.WHITE), 0.01);
     }
@@ -140,15 +148,7 @@ class BoardTest {
     @Test
     @DisplayName("같은 세로줄에 같은 색의 폰이 있는 경우의 점수를 계산할 수 있다")
     public void calculatePointYesSameLinePawn() {
-        String boardString = ".KR....." +
-                "P.PB...." +
-                ".P..Q..." +
-                "........" +
-                ".....nq." +
-                ".....p.p" +
-                ".....pp." +
-                "....rk..";
-        board.initialize(boardString);
+        board.initialize(yesSameLinePawn);
         assertEquals(20, board.calculatePoint(Color.BLACK), 0.01);
         assertEquals(19.5, board.calculatePoint(Color.WHITE), 0.01);
     }
