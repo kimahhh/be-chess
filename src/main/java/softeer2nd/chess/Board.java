@@ -3,7 +3,7 @@ package softeer2nd.chess;
 import softeer2nd.chess.pieces.Piece;
 
 import java.util.ArrayList;
-렬import java.util.Comparator;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 import static softeer2nd.chess.Position.*;
