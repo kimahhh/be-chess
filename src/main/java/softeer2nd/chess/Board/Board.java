@@ -61,7 +61,7 @@ public class Board {
     }
 
     public String getRankResult(int index) {
-        index = 8 - index;
+        index = BOARD_SIZE - index;
         StringBuilder stringBuilder = new StringBuilder();
         for (Piece piece : board.get(index).rank) {
             stringBuilder.append(piece.getRepresentation());
