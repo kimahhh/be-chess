@@ -1,6 +1,8 @@
 package softeer2nd;
 
 import softeer2nd.chess.Board.Board;
+import softeer2nd.chess.Board.ChessGame;
+import softeer2nd.chess.Board.ChessView;
 
 import java.util.Scanner;
 
@@ -8,6 +10,8 @@ public class Player {
     private static boolean isStart = false;
     private static boolean isContinue = true;
     private static Board board;
+    private static ChessView chessView;
+    private static ChessGame chessGame;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -44,8 +48,10 @@ public class Player {
         System.out.println("Game is start");
         isStart = true;
         board = new Board();
-        board.initializeBasic();
-        System.out.println(board.showBoardWithXY());
+        chessView = new ChessView();
+        chessGame = new ChessGame();
+        chessGame.initializeBasic(board);
+        System.out.println(chessView.showBoardWithXY(board));
     }
 
     private static void endGame() {
@@ -55,7 +61,7 @@ public class Player {
 
     private static void movePiece(String command) {
         String[] commands = command.split(" ");
-        board.move(commands[1], commands[2]);
-        System.out.println(board.showBoardWithXY());
+        chessGame.move(board, commands[1], commands[2]);
+        System.out.println(chessView.showBoardWithXY(board));
     }
 }
