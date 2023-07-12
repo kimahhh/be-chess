@@ -44,13 +44,12 @@ public class ChessGame {
         initialize(board, noPiece);
     }
 
-    public static void move(Board board, String coordinate, Piece piece) {
-        Position position = new Position(coordinate);
+    public static void move(Board board, Position position, Piece piece) {
         board.getBoard().get(position.getY())
                 .rank.set(position.getX(), piece);
     }
 
-    public static void move(Board board, String sourcePosition, String targetPosition) {
+    public static void move(Board board, Position sourcePosition, Position targetPosition) {
         Piece piece = board.findPiece(sourcePosition);
         Piece diePiece = board.findPiece(targetPosition);
         if (diePiece.getType().equals(Piece.Type.NO_PIECE)) {

@@ -35,8 +35,7 @@ public class Board {
         return this.board;
     }
 
-    public Piece findPiece(String coordinate) {
-        Position position = new Position(coordinate);
+    public Piece findPiece(Position position) {
         return board.get(position.getY()).rank.get(position.getX());
     }
 

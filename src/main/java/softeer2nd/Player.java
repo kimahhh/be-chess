@@ -3,6 +3,7 @@ package softeer2nd;
 import softeer2nd.chess.Board.Board;
 import softeer2nd.chess.Board.ChessGame;
 import softeer2nd.chess.Board.ChessView;
+import softeer2nd.chess.Position;
 
 import java.util.Scanner;
 
@@ -61,7 +62,7 @@ public class Player {
 
     private static void movePiece(String command) {
         String[] commands = command.split(" ");
-        chessGame.move(board, commands[1], commands[2]);
+        chessGame.move(board, new Position(commands[1]), new Position(commands[2]));
         System.out.println(chessView.showBoardWithXY(board));
     }
 }

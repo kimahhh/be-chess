@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import softeer2nd.chess.Position;
 import softeer2nd.chess.pieces.*;
 
 import java.util.ArrayList;
@@ -69,8 +70,8 @@ class BoardTest {
     @DisplayName("좌표를 인자로 받아 해당 좌표의 기물을 조회할 수 있어야 한다")
     public void getPieceWithCoordinate() {
         chessGame.initializeBasic(board);
-        assertEquals(board.getBoard().get(0).rank.get(0), board.findPiece("a8"));
-        assertEquals(board.getBoard().get(7).rank.get(4), board.findPiece("e1"));
+        assertEquals(board.getBoard().get(0).rank.get(0), board.findPiece(new Position("a8")));
+        assertEquals(board.getBoard().get(7).rank.get(4), board.findPiece(new Position("e1")));
     }
 
     @Test

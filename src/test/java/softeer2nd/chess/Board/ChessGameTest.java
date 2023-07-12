@@ -3,6 +3,7 @@ package softeer2nd.chess.Board;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import softeer2nd.chess.Position;
 import softeer2nd.chess.pieces.Pawn;
 import softeer2nd.chess.pieces.Piece;
 
@@ -107,11 +108,11 @@ class ChessGameTest {
     public void moveTest() {
         chessGame.initializeEmpty(board);
 
-        String coordinate = "b5";
+        Position position = new Position("b5");
         Piece piece = createPiece(Piece.Color.BLACK, Piece.Type.ROOK);
-        move(board, coordinate, piece);
+        move(board, position, piece);
 
-        assertEquals(piece, board.findPiece(coordinate));
+        assertEquals(piece, board.findPiece(position));
         System.out.println(chessView.showBoard(board));
     }
 
@@ -121,8 +122,8 @@ class ChessGameTest {
         chessGame.initializeBasic(board);
         System.out.println(chessView.showBoard(board));
 
-        String sourcePosition = "b2";
-        String targetPosition = "b3";
+        Position sourcePosition = new Position("b2");
+        Position targetPosition = new Position("b3");
         move(board, sourcePosition, targetPosition);
 
         assertEquals(createBlank(), board.findPiece(sourcePosition));
@@ -151,15 +152,15 @@ class ChessGameTest {
     public void calculatePoint() {
         chessGame.initializeEmpty(board);
 
-        move(board, "b6", createPiece(Color.BLACK, Type.PAWN));
-        move(board, "e6", createPiece(Color.BLACK, Type.QUEEN));
-        move(board, "b8", createPiece(Color.BLACK, Type.KING));
-        move(board, "c8", createPiece(Color.BLACK, Type.ROOK));
+        move(board, new Position("b6"), createPiece(Color.BLACK, Type.PAWN));
+        move(board, new Position("e6"), createPiece(Color.BLACK, Type.QUEEN));
+        move(board, new Position("b8"), createPiece(Color.BLACK, Type.KING));
+        move(board, new Position("c8"), createPiece(Color.BLACK, Type.ROOK));
 
-        move(board, "f2", createPiece(Color.WHITE, Type.PAWN));
-        move(board, "g2", createPiece(Color.WHITE, Type.PAWN));
-        move(board, "e1", createPiece(Color.WHITE, Type.ROOK));
-        move(board, "f1", createPiece(Color.WHITE, Type.KING));
+        move(board, new Position("f2"), createPiece(Color.WHITE, Type.PAWN));
+        move(board, new Position("g2"), createPiece(Color.WHITE, Type.PAWN));
+        move(board, new Position("e1"), createPiece(Color.WHITE, Type.ROOK));
+        move(board, new Position("f1"), createPiece(Color.WHITE, Type.KING));
 
         assertEquals(15.0, chessGame.calculatePoint(board, Color.BLACK), 0.01);
         assertEquals(7.0, chessGame.calculatePoint(board, Color.WHITE), 0.01);
