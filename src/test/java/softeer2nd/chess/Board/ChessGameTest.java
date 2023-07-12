@@ -132,6 +132,19 @@ class ChessGameTest {
     }
 
     @Test
+    @DisplayName("올바르지 않은 위치로는 이동할 수 없어야 한다")
+    void cantMoveToWrongPosition() {
+        chessGame.initializeBasic(board);
+
+        Position sourcePosition = new Position("b2");
+        Position targetPosition = new Position("b5");
+        move(board, sourcePosition, targetPosition);
+
+        assertEquals(Pawn.createWhitePawn(), board.findPiece(sourcePosition));
+        assertEquals(createBlank(), board.findPiece(targetPosition));
+    }
+
+    @Test
     @DisplayName("같은 세로줄에 같은 색의 폰이 없는 경우의 점수를 계산할 수 있다")
     public void calculatePointNoSameLinePawn() {
         chessGame.initialize(board, noSameLinePawn);
