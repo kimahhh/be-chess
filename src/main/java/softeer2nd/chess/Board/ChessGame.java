@@ -1,11 +1,10 @@
 package softeer2nd.chess.Board;
 
 
+import softeer2nd.chess.Position;
 import softeer2nd.chess.pieces.Piece;
 
 import static softeer2nd.chess.Board.Board.BOARD_SIZE;
-import static softeer2nd.chess.Position.getX;
-import static softeer2nd.chess.Position.getY;
 import static softeer2nd.chess.pieces.Piece.*;
 
 public class ChessGame {
@@ -45,9 +44,10 @@ public class ChessGame {
         initialize(board, noPiece);
     }
 
-    public static void move(Board board, String position, Piece piece) {
-        board.getBoard().get(BOARD_SIZE - getY(position.charAt(1)))
-                .rank.set(getX(position.charAt(0)), piece);
+    public static void move(Board board, String coordinate, Piece piece) {
+        Position position = new Position(coordinate);
+        board.getBoard().get(position.getY())
+                .rank.set(position.getX(), piece);
     }
 
     public static void move(Board board, String sourcePosition, String targetPosition) {

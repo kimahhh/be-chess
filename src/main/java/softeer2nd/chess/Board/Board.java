@@ -1,12 +1,12 @@
 package softeer2nd.chess.Board;
 
+import softeer2nd.chess.Position;
 import softeer2nd.chess.pieces.Piece;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-import static softeer2nd.chess.Position.*;
 import static softeer2nd.chess.pieces.Piece.*;
 
 public class Board {
@@ -36,9 +36,8 @@ public class Board {
     }
 
     public Piece findPiece(String coordinate) {
-        int x = getX(coordinate.charAt(0));
-        int y = BOARD_SIZE - getY(coordinate.charAt(1));
-        return board.get(y).rank.get(x);
+        Position position = new Position(coordinate);
+        return board.get(position.getY()).rank.get(position.getX());
     }
 
     public String getRankResult(int index) {

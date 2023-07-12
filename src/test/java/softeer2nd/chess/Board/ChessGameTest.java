@@ -107,11 +107,11 @@ class ChessGameTest {
     public void moveTest() {
         chessGame.initializeEmpty(board);
 
-        String position = "b5";
+        String coordinate = "b5";
         Piece piece = createPiece(Piece.Color.BLACK, Piece.Type.ROOK);
-        move(board, position, piece);
+        move(board, coordinate, piece);
 
-        assertEquals(piece, board.findPiece(position));
+        assertEquals(piece, board.findPiece(coordinate));
         System.out.println(chessView.showBoard(board));
     }
 
