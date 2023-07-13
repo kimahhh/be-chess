@@ -2,6 +2,8 @@ package softeer2nd.chess.pieces;
 
 import softeer2nd.chess.Position;
 
+import java.util.List;
+
 import static softeer2nd.chess.Direction.everyDirection;
 
 public class King extends Piece{
@@ -22,5 +24,10 @@ public class King extends Piece{
         int dy = sourcePosition.getY() - targetPosition.getY();
         return everyDirection().stream()
                 .anyMatch(direction -> direction.getXDegree() == dx && direction.getYDegree() == dy);
+    }
+
+    @Override
+    public List<Position> verifyPathClear(Position sourcePosition, Position targetPosition) {
+        return List.of();
     }
 }

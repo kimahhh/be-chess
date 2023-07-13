@@ -19,6 +19,11 @@ public class Position {
         y = 8 - validPosition.get(1);
     }
 
+    public Position(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     private int char2int(char x) {
         return x - 'a';
     }

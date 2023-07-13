@@ -60,6 +60,7 @@ public class ChessGame {
         Piece piece = board.findPiece(sourcePosition);
         checkTurn(piece);
         checkMove(piece, sourcePosition, targetPosition);
+        checkPath(board, piece, sourcePosition, targetPosition);
         Piece diePiece = board.findPiece(targetPosition);
         checkColor(piece, diePiece);
         if (diePiece.getType().equals(Piece.Type.NO_PIECE)) {
@@ -85,6 +86,14 @@ public class ChessGame {
     private static void checkMove(Piece piece, Position sourcePosition, Position targetPosition) {
         if (!piece.verifyMovePosition(sourcePosition, targetPosition))
             throw new IllegalArgumentException(PIECE_INVALID_POSITION.getMessage());
+    }
+
+    private static void checkPath(Board board, Piece piece, Position sourcePosition, Position targetPosition) {
+        for (Position position : piece.verifyPathClear(sourcePosition, targetPosition)) {
+            if (!board.findPiece(position).equals(createBlank())) {
+                throw new IllegalArgumentException(PIECE_INVALID_PATH.getMessage());
+            }
+        }
     }
 
     private static void checkColor(Piece sourcePiece, Piece targetPiece) {

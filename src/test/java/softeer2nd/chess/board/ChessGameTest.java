@@ -188,18 +188,87 @@ class ChessGameTest {
     }
 
     @Test
+    @DisplayName("Bishop 기물이 이동하는 경로에 어떤 말도 존재하지 않아야 한다")
+    void validPathPawn() {
+        // Given
+        String sample = "........" +
+                "......b." +
+                "........" +
+                "....P..." +
+                "........" +
+                "....N..." +
+                "........" +
+                "........";
+
+        // When
+        chessGame.initialize(board, sample);
+        Exception exception = assertThrows(Exception.class, () -> {
+            move(board, new Position("g7"), new Position("c3"));
+        });
+
+        // Then
+        assertEquals(PIECE_INVALID_PATH.getMessage(), exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Queen 기물이 이동하는 경로에 어떤 말도 존재하지 않아야 한다")
+    void validPathQueen() {
+        // Given
+        String sample = "........" +
+                "........" +
+                "....q..." +
+                "........" +
+                "........" +
+                "....N..." +
+                "........" +
+                "........";
+
+        // When
+        chessGame.initialize(board, sample);
+        Exception exception = assertThrows(Exception.class, () -> {
+            move(board, new Position("e6"), new Position("e1"));
+        });
+
+        // Then
+        assertEquals(PIECE_INVALID_PATH.getMessage(), exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Rook 기물이 이동하는 경로에 어떤 말도 존재하지 않아야 한다")
+    void validPathRook() {
+        // Given
+        String sample = "........" +
+                "........" +
+                "....r..." +
+                "........" +
+                "........" +
+                "....P..." +
+                "........" +
+                "........";
+
+        // When
+        chessGame.initialize(board, sample);
+        Exception exception = assertThrows(Exception.class, () -> {
+            move(board, new Position("e6"), new Position("e1"));
+        });
+
+        // Then
+        assertEquals(PIECE_INVALID_PATH.getMessage(), exception.getMessage());
+    }
+
+    @Test
     @DisplayName("같은 색의 기물을 잡을 수 없어야 한다")
     void cantCatchSameColor() {
         // When
         chessGame.initializeBasic(board);
         Position sourcePosition = new Position("d1");
         Position targetPosition = new Position("e2");
-        Exception exceptioin = assertThrows(Exception.class, () -> {
+        Exception exception = assertThrows(Exception.class, () -> {
            move(board, sourcePosition, targetPosition);
         });
 
         // Then
-        assertEquals(PIECE_CANT_CATCH_SAME_COLOR.getMessage(), exceptioin.getMessage());
+        assertEquals(PIECE_CANT_CATCH_SAME_COLOR.getMessage(), exception.getMessage());
 
     }
 

@@ -2,6 +2,8 @@ package softeer2nd.chess.pieces;
 
 import softeer2nd.chess.Position;
 
+import java.util.List;
+
 import static softeer2nd.chess.Direction.*;
 import static softeer2nd.chess.board.Board.BOARD_SIZE;
 import static softeer2nd.exception.Exception.PIECE_INVALID_COLOR;
@@ -22,7 +24,7 @@ public class Pawn extends Piece {
     public boolean verifyMovePosition(Position sourcePosition, Position targetPosition) {
         int dx = targetPosition.getX() - sourcePosition.getX();
         int dy = sourcePosition.getY() - targetPosition.getY();
-        switch (this.getColor()) {
+        switch (getColor()) {
             case WHITE:
                 return verifyWhiteMovePosition(sourcePosition, dx, dy);
             case BLACK:
@@ -47,4 +49,10 @@ public class Pawn extends Piece {
         if (sourcePosition.getY() + 7 == BOARD_SIZE) return SS.getXDegree() == dx && SS.getYDegree() == dy;
         return false;
     }
+
+    @Override
+    public List<Position> verifyPathClear(Position sourcePosition, Position targetPosition) {
+        return List.of();
+    }
+
 }

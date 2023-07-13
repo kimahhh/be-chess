@@ -2,6 +2,7 @@ package softeer2nd.chess.pieces;
 
 import softeer2nd.chess.Position;
 
+import java.util.List;
 import java.util.Objects;
 
 import static softeer2nd.exception.Exception.*;
@@ -50,6 +51,7 @@ public abstract class Piece {
     }
 
     public abstract boolean verifyMovePosition(Position sourcePosition, Position targetPosition);
+    public abstract List<Position> verifyPathClear(Position sourcePosition, Position targetPosition);
 
     public static Piece createBlank() {
         return Blank.createBlank();
