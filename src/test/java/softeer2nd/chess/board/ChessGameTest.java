@@ -1,4 +1,4 @@
-package softeer2nd.chess.Board;
+package softeer2nd.chess.board;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,7 +8,7 @@ import softeer2nd.chess.pieces.Pawn;
 import softeer2nd.chess.pieces.Piece;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static softeer2nd.chess.Board.ChessGame.move;
+import static softeer2nd.chess.board.ChessGame.move;
 import static softeer2nd.chess.pieces.Piece.*;
 import static softeer2nd.exception.Exception.PIECE_CANT_CATCH_SAME_COLOR;
 import static softeer2nd.exception.Exception.PIECE_INVALID_POSITION;

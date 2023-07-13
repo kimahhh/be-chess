@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static softeer2nd.chess.Board.ChessGame.move;
+import static softeer2nd.chess.board.ChessGame.move;
 import static softeer2nd.exception.Exception.*;
 
 class PositionTest {

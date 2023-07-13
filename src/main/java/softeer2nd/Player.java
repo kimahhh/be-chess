@@ -1,13 +1,13 @@
 package softeer2nd;
 
-import softeer2nd.chess.Board.Board;
-import softeer2nd.chess.Board.ChessGame;
-import softeer2nd.chess.Board.ChessView;
+import softeer2nd.chess.board.Board;
+import softeer2nd.chess.board.ChessGame;
+import softeer2nd.chess.board.ChessView;
 import softeer2nd.chess.Position;
 
 import java.util.Scanner;
 
-import static softeer2nd.chess.Board.ChessGame.move;
+import static softeer2nd.chess.board.ChessGame.move;
 
 public class Player {
     private static boolean isStart = false;

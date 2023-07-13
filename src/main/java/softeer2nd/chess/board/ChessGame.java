@@ -1,10 +1,10 @@
-package softeer2nd.chess.Board;
+package softeer2nd.chess.board;
 
 
 import softeer2nd.chess.Position;
 import softeer2nd.chess.pieces.Piece;
 
-import static softeer2nd.chess.Board.Board.BOARD_SIZE;
+import static softeer2nd.chess.board.Board.BOARD_SIZE;
 import static softeer2nd.chess.pieces.Piece.*;
 import static softeer2nd.exception.Exception.PIECE_CANT_CATCH_SAME_COLOR;
 import static softeer2nd.exception.Exception.PIECE_INVALID_POSITION;
@@ -65,12 +65,12 @@ public class ChessGame {
         move(board, targetPosition, piece);
     }
 
-    public static void checkMove(Piece piece, Position sourcePosition, Position targetPosition) {
+    private static void checkMove(Piece piece, Position sourcePosition, Position targetPosition) {
         if (!piece.verifyMovePosition(sourcePosition, targetPosition))
             throw new IllegalArgumentException(PIECE_INVALID_POSITION.getMessage());
     }
 
-    public static void checkColor(Piece sourcePiece, Piece targetPiece) {
+    private static void checkColor(Piece sourcePiece, Piece targetPiece) {
         if (sourcePiece.isWhite() == targetPiece.isWhite())
             throw new IllegalArgumentException(PIECE_CANT_CATCH_SAME_COLOR.getMessage());
     }
