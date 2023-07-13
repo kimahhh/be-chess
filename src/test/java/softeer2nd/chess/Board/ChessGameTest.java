@@ -10,6 +10,8 @@ import softeer2nd.chess.pieces.Piece;
 import static org.junit.jupiter.api.Assertions.*;
 import static softeer2nd.chess.Board.ChessGame.move;
 import static softeer2nd.chess.pieces.Piece.*;
+import static softeer2nd.exception.Exception.PIECE_CANT_CATCH_SAME_COLOR;
+import static softeer2nd.exception.Exception.PIECE_INVALID_POSITION;
 import static softeer2nd.utils.StringUtils.appendNewLine;
 
 class ChessGameTest {
@@ -113,14 +115,12 @@ class ChessGameTest {
         move(board, position, piece);
 
         assertEquals(piece, board.findPiece(position));
-        System.out.println(chessView.showBoard(board));
     }
 
     @Test
     @DisplayName("현재 좌표와 타겟 좌표를 인자로 받아 현재 좌표에 있는 기물을 타겟 좌표로 이동할 수 있어야 한다")
     public void moveWithCoordinate() {
         chessGame.initializeBasic(board);
-        System.out.println(chessView.showBoard(board));
 
         Position sourcePosition = new Position("b2");
         Position targetPosition = new Position("b3");
@@ -128,20 +128,33 @@ class ChessGameTest {
 
         assertEquals(createBlank(), board.findPiece(sourcePosition));
         assertEquals(Pawn.createWhitePawn(), board.findPiece(targetPosition));
-        System.out.println(chessView.showBoard(board));
     }
 
     @Test
     @DisplayName("올바르지 않은 위치로는 이동할 수 없어야 한다")
     void cantMoveToWrongPosition() {
         chessGame.initializeBasic(board);
-
         Position sourcePosition = new Position("b2");
         Position targetPosition = new Position("b5");
-        move(board, sourcePosition, targetPosition);
+        Exception exception = assertThrows(Exception.class, () -> {
+            move(board, sourcePosition, targetPosition);
+        });
 
-        assertEquals(Pawn.createWhitePawn(), board.findPiece(sourcePosition));
-        assertEquals(createBlank(), board.findPiece(targetPosition));
+        assertEquals(PIECE_INVALID_POSITION.getMessage(), exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("같은 색의 기물을 잡을 수 없어야 한다")
+    void cantCatchSameColor() {
+        chessGame.initializeBasic(board);
+        Position sourcePosition = new Position("d1");
+        Position targetPosition = new Position("e2");
+        Exception exceptioin = assertThrows(Exception.class, () -> {
+           move(board, sourcePosition, targetPosition);
+        });
+
+        assertEquals(PIECE_CANT_CATCH_SAME_COLOR.getMessage(), exceptioin.getMessage());
+
     }
 
     @Test
@@ -177,8 +190,6 @@ class ChessGameTest {
 
         assertEquals(15.0, chessGame.calculatePoint(board, Color.BLACK), 0.01);
         assertEquals(7.0, chessGame.calculatePoint(board, Color.WHITE), 0.01);
-
-        System.out.println(chessView.showBoard(board));
     }
 
 }

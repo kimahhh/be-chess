@@ -55,6 +55,7 @@ public class ChessGame {
         Piece piece = board.findPiece(sourcePosition);
         checkMove(piece, sourcePosition, targetPosition);
         Piece diePiece = board.findPiece(targetPosition);
+        checkColor(piece, diePiece);
         if (diePiece.getType().equals(Piece.Type.NO_PIECE)) {
             move(board, sourcePosition, diePiece);
         }
@@ -67,6 +68,11 @@ public class ChessGame {
     public static void checkMove(Piece piece, Position sourcePosition, Position targetPosition) {
         if (!piece.verifyMovePosition(sourcePosition, targetPosition))
             throw new IllegalArgumentException(PIECE_INVALID_POSITION.getMessage());
+    }
+
+    public static void checkColor(Piece sourcePiece, Piece targetPiece) {
+        if (sourcePiece.isWhite() == targetPiece.isWhite())
+            throw new IllegalArgumentException(PIECE_CANT_CATCH_SAME_COLOR.getMessage());
     }
 
     public double calculatePoint(Board board, Color color) {
