@@ -9,6 +9,11 @@ import static softeer2nd.chess.pieces.Piece.*;
 import static softeer2nd.exception.Exception.*;
 
 public class ChessGame {
+    private static boolean isWhiteTurn;
+
+    public ChessGame() {
+        isWhiteTurn = true;
+    }
 
     public void initialize(Board board, String boardString) {
         board.getBoard().clear();
@@ -53,6 +58,7 @@ public class ChessGame {
     public static void move(Board board, Position sourcePosition, Position targetPosition) {
         checkSamePosition(sourcePosition, targetPosition);
         Piece piece = board.findPiece(sourcePosition);
+        checkTurn(piece);
         checkMove(piece, sourcePosition, targetPosition);
         Piece diePiece = board.findPiece(targetPosition);
         checkColor(piece, diePiece);
@@ -63,11 +69,17 @@ public class ChessGame {
             move(board, sourcePosition, createBlank());
         }
         move(board, targetPosition, piece);
+        changeTurn();
     }
 
     private static void checkSamePosition(Position sourcePosition, Position targetPosition) {
         if (sourcePosition.equals(targetPosition))
             throw new IllegalArgumentException(POSITION_MOVE_TO_SAME_POSITION.getMessage());
+    }
+
+    private static void checkTurn(Piece piece) {
+        if (isWhiteTurn == piece.isWhite()) return;
+        throw new IllegalArgumentException((isWhiteTurn ? "흰" : "검은") + NOT_YOUR_TURN.getMessage());
     }
 
     private static void checkMove(Piece piece, Position sourcePosition, Position targetPosition) {
@@ -76,8 +88,12 @@ public class ChessGame {
     }
 
     private static void checkColor(Piece sourcePiece, Piece targetPiece) {
-        if (sourcePiece.isWhite() == targetPiece.isWhite())
+        if (sourcePiece.isWhite() == targetPiece.isWhite() && sourcePiece.isBlack() == targetPiece.isBlack())
             throw new IllegalArgumentException(PIECE_CANT_CATCH_SAME_COLOR.getMessage());
+    }
+
+    private static void changeTurn() {
+        isWhiteTurn = !isWhiteTurn;
     }
 
     public double calculatePoint(Board board, Color color) {

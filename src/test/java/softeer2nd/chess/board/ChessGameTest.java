@@ -143,7 +143,26 @@ class ChessGameTest {
     }
 
     @Test
-    @DisplayName("올바르지 않은 위치로는 이동할 수 없어야 한다")
+    @DisplayName("이동할 차례를 지켜야 한다")
+    void waitYourTurn() {
+        chessGame.initializeBasic(board);
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            move(board, new Position("b7"), new Position("b5"));
+        });
+
+        assertEquals("흰" + NOT_YOUR_TURN.getMessage(), exception.getMessage());
+
+        move(board, new Position("d2"), new Position("d4"));
+        exception = assertThrows(Exception.class, () -> {
+            move(board,new Position("d1"), new Position("d2"));
+        });
+
+        assertEquals("검은" + NOT_YOUR_TURN.getMessage(), exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("이동할 수 없는 위치로는 이동할 수 없어야 한다")
     void cantMoveToWrongPosition() {
         chessGame.initializeBasic(board);
         Position sourcePosition = new Position("b2");
