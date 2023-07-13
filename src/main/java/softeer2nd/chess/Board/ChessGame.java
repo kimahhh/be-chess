@@ -6,6 +6,8 @@ import softeer2nd.chess.pieces.Piece;
 
 import static softeer2nd.chess.Board.Board.BOARD_SIZE;
 import static softeer2nd.chess.pieces.Piece.*;
+import static softeer2nd.exception.Exception.PIECE_CANT_CATCH_SAME_COLOR;
+import static softeer2nd.exception.Exception.PIECE_INVALID_POSITION;
 
 public class ChessGame {
 
@@ -51,10 +53,7 @@ public class ChessGame {
 
     public static void move(Board board, Position sourcePosition, Position targetPosition) {
         Piece piece = board.findPiece(sourcePosition);
-        if (!piece.verifyMovePosition(sourcePosition, targetPosition)) {
-            System.out.println("현재 선택한 기물은 해당 위치로 이동할 수 없습니다.");
-            return;
-        }
+        checkMove(piece, sourcePosition, targetPosition);
         Piece diePiece = board.findPiece(targetPosition);
         if (diePiece.getType().equals(Piece.Type.NO_PIECE)) {
             move(board, sourcePosition, diePiece);
@@ -65,9 +64,9 @@ public class ChessGame {
         move(board, targetPosition, piece);
     }
 
-    private static boolean isInBoard(Position targetPosition) {
-        return 0 <= targetPosition.getX() && targetPosition.getX() < 8
-                && 0 <= targetPosition.getY() && targetPosition.getY() < 8;
+    public static void checkMove(Piece piece, Position sourcePosition, Position targetPosition) {
+        if (!piece.verifyMovePosition(sourcePosition, targetPosition))
+            throw new IllegalArgumentException(PIECE_INVALID_POSITION.getMessage());
     }
 
     public double calculatePoint(Board board, Color color) {
