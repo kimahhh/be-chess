@@ -17,6 +17,7 @@ public class Player {
     private static ChessView chessView;
     private static ChessGame chessGame;
     private static final String ENTER_START = "Enter 'Start' to begin the game";
+    private static final String COMMAND_INFO = "Command List:\n1. move a3 d5 2. resigns 3. end";
     private static final String NOT_START_YET = "아직 게임이 시작하지 않았습니다.";
     private static final String RIGHT_COMMAND = "적절한 명령어를 입력해주세요.";
     private static final String GAME_IS_START = "Game is start";
@@ -26,6 +27,9 @@ public class Player {
         Scanner scanner = new Scanner(System.in);
         System.out.println(ENTER_START);
         while(isContinue) {
+            if (isStart) {
+                System.out.println(COMMAND_INFO);
+            }
             String command = scanner.nextLine();
             gameAction(command.toLowerCase());
         }
