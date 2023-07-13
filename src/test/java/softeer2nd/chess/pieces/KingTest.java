@@ -26,13 +26,17 @@ class KingTest {
     @Test
     @DisplayName("King 기물의 움직임 가능 여부를 판별할 수 있어야 한다")
     void verifyMove() {
+        // Given
         Position sourcePosition = new Position("d5");
-        Position targetPosition = new Position("e6");
-        Piece piece = createWhiteKing();
-        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition));
+        Position targetPosition1 = new Position("e6");
+        Position targetPosition2 = new Position("e7");
 
-        targetPosition = new Position("e7");
-        assertFalse(piece.verifyMovePosition(sourcePosition, targetPosition));
+        // When
+        Piece piece = createWhiteKing();
+
+        // Then
+        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition1));
+        assertFalse(piece.verifyMovePosition(sourcePosition, targetPosition2));
     }
 
 }

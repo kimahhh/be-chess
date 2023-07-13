@@ -26,16 +26,19 @@ class QueenTest {
     @Test
     @DisplayName("Queen 기물의 움직임 가능 여부를 판별할 수 있어야 한다")
     void verifyMove() {
+        // Given
         Position sourcePosition = new Position("a1");
-        Position targetPosition = new Position("g7");
+        Position targetPosition1 = new Position("g7");
+        Position targetPosition2 = new Position("a5");
+        Position targetPosition3 = new Position("f7");
+
+        // When
         Piece piece = createWhiteQueen();
-        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition));
 
-        targetPosition = new Position("a5");
-        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition));
-
-        targetPosition = new Position("f7");
-        assertFalse(piece.verifyMovePosition(sourcePosition, targetPosition));
+        // Then
+        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition1));
+        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition2));
+        assertFalse(piece.verifyMovePosition(sourcePosition, targetPosition3));
     }
 
 }

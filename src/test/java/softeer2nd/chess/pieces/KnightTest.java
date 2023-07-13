@@ -28,12 +28,16 @@ class KnightTest {
     @Test
     @DisplayName("Knight 기물의 움직임 가능 여부를 판별할 수 있어야 한다")
     void verifyMove() {
+        // Given
         Position sourcePosition = new Position("d5");
-        Position targetPosition = new Position("e7");
-        Piece piece = createWhiteKnight();
-        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition));
+        Position targetPosition1 = new Position("e7");
+        Position targetPosition2 = new Position("f3");
 
-        targetPosition = new Position("f3");
-        assertFalse(piece.verifyMovePosition(sourcePosition, targetPosition));
+        // When
+        Piece piece = createWhiteKnight();
+
+        // Then
+        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition1));
+        assertFalse(piece.verifyMovePosition(sourcePosition, targetPosition2));
     }
 }

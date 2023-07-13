@@ -26,15 +26,18 @@ class RookTest {
     @Test
     @DisplayName("Rook 기물의 움직임 가능 여부를 판별할 수 있어야 한다")
     void verifyMove() {
+        // Given
         Position sourcePosition = new Position("b6");
-        Position targetPosition = new Position("b2");
+        Position targetPosition1 = new Position("b2");
+        Position targetPosition2 = new Position("h6");
+        Position targetPosition3 = new Position("c8");
+
+        // When
         Piece piece = createWhiteRook();
-        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition));
 
-        targetPosition = new Position("h6");
-        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition));
-
-        targetPosition = new Position("c8");
-        assertFalse(piece.verifyMovePosition(sourcePosition, targetPosition));
+        // Then
+        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition1));
+        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition2));
+        assertFalse(piece.verifyMovePosition(sourcePosition, targetPosition3));
     }
 }

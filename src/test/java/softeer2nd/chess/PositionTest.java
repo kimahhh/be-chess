@@ -11,7 +11,10 @@ class PositionTest {
     @Test
     @DisplayName("위치를 String으로 입력받아 생성할 수 있어야 한다")
     void create() {
+        // Given, When
         Position position = new Position("b7");
+
+        // Then
         assertEquals(1, position.getX());
         assertEquals(1, position.getY());
     }
@@ -19,16 +22,19 @@ class PositionTest {
     @Test
     @DisplayName("잘못된 위치를 입력받으면 오류를 던져야 한다")
     void createPositionException() {
+        // Given
         verifyPosition("ab3");
         verifyPosition("z3");
         verifyPosition("a9");
     }
 
     private void verifyPosition(String coordinate) {
+        // When
         Exception exception = assertThrows(Exception.class, () -> {
             new Position(coordinate);
         });
 
+        // Then
         assertEquals(POSITION_WRONG_INPUT.getMessage(), exception.getMessage());
     }
 

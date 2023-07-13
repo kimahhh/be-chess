@@ -16,51 +16,44 @@ class BoardTest {
 
     private Board board;
     private ChessGame chessGame;
-    private String sample1 = ".KR....." +
-                            "P.PB...." +
-                            ".P..Q..." +
-                            "........" +
-                            ".....nq." +
-                            ".....p.." +
-                            "......p." +
-                            "....rk..";
-    private String noSameLinePawn = ".KR....." +
-            "P.PB...." +
-            ".P..Q..." +
-            "........" +
-            ".....nq." +
-            ".....p.p" +
-            "......p." +
-            "....rk..";
-    private String yesSameLinePawn = ".KR....." +
-            "P.PB...." +
-            ".P..Q..." +
-            "........" +
-            ".....nq." +
-            ".....p.p" +
-            ".....pp." +
-            "....rk..";
 
     @BeforeEach
     public void setup() {
+        // Given
         board = new Board();
         chessGame = new ChessGame();
+
+        // When
+        chessGame.initializeBasic(board);
     }
 
     @Test
     @DisplayName("모든 기물의 개수를 반환할 수 있어야 한다")
     public void getPieceCount() {
-        chessGame.initializeBasic(board);
+        // Then
         assertEquals(32, board.pieceCount());
 
-        chessGame.initialize(board, sample1);
+        // Given
+        String sample = ".KR....." +
+                "P.PB...." +
+                ".P..Q..." +
+                "........" +
+                ".....nq." +
+                ".....p.." +
+                "......p." +
+                "....rk..";
+
+        // When
+        chessGame.initialize(board, sample);
+
+        // Then
         assertEquals(13, board.pieceCount());
     }
 
     @Test
     @DisplayName("기물의 색과 종류를 인자로 받아 해당 기물의 개수를 반환할 수 있어야 한다")
     public void getPieceCountWithColorAndType() {
-        chessGame.initializeBasic(board);
+        // Then
         assertEquals(8, board.pieceCount(Color.WHITE, Type.PAWN));
         assertEquals(2, board.pieceCount(Color.BLACK, Type.ROOK));
         assertEquals(1, board.pieceCount(Color.BLACK, Type.QUEEN));
@@ -69,7 +62,7 @@ class BoardTest {
     @Test
     @DisplayName("좌표를 인자로 받아 해당 좌표의 기물을 조회할 수 있어야 한다")
     public void getPieceWithCoordinate() {
-        chessGame.initializeBasic(board);
+        // Then
         assertEquals(createPiece(Color.BLACK, Type.ROOK), board.findPiece(new Position("a8")));
         assertEquals(createPiece(Color.WHITE, Type.KING), board.findPiece(new Position("e1")));
     }
@@ -77,11 +70,21 @@ class BoardTest {
     @Test
     @DisplayName("기물의 점수가 낮은 순으로 정렬할 수 있어야 한다")
     public void sortAscPieces() {
+        // Given
+        String noSameLinePawn = ".KR....." +
+                "P.PB...." +
+                ".P..Q..." +
+                "........" +
+                ".....nq." +
+                ".....p.p" +
+                "......p." +
+                "....rk..";
+        // When
         chessGame.initialize(board, noSameLinePawn);
-
         ArrayList<Piece> sortAscBlackPieces = board.sortAscPieces(Color.BLACK);
         ArrayList<Piece> sortAscWhitePieces = board.sortAscPieces(Color.WHITE);
 
+        // Then
         assertEquals(King.createBlackKing(), sortAscBlackPieces.get(0));
         assertEquals(Queen.createBlackQueen(), sortAscBlackPieces.get(sortAscBlackPieces.size() - 1));
         assertEquals(Pawn.createWhitePawn(), sortAscWhitePieces.get(1));
@@ -91,11 +94,22 @@ class BoardTest {
     @Test
     @DisplayName("기물의 점수가 높은 순으로 정렬할 수 있어야 한다")
     public void sortDescPieces() {
-        chessGame.initialize(board, yesSameLinePawn);
+        // Given
+        String yesSameLinePawn = ".KR....." +
+                "P.PB...." +
+                ".P..Q..." +
+                "........" +
+                ".....nq." +
+                ".....p.p" +
+                ".....pp." +
+                "....rk..";
 
+        // When
+        chessGame.initialize(board, yesSameLinePawn);
         ArrayList<Piece> sortDescBlackPieces = board.sortDescPieces(Color.BLACK);
         ArrayList<Piece> sortDescWhitePieces = board.sortDescPieces(Color.WHITE);
 
+        // Then
         assertEquals(Queen.createBlackQueen(), sortDescBlackPieces.get(0));
         assertEquals(King.createBlackKing(), sortDescBlackPieces.get(sortDescBlackPieces.size() - 1));
         assertEquals(Rook.createWhiteRook(), sortDescWhitePieces.get(1));

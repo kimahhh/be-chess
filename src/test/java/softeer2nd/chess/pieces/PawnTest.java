@@ -26,42 +26,60 @@ class PawnTest {
     @Test
     @DisplayName("White Pawn 기물의 움직임 가능 여부를 판별할 수 있어야 한다")
     void verifyMoveWhite() {
+        // Given
         Position sourcePosition = new Position("a2");
-        Position targetPosition = new Position("a3");
-        Piece piece = createWhitePawn();
-        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition));
+        Position targetPosition1 = new Position("a3");
+        Position targetPosition2 = new Position("b2");
 
-        targetPosition = new Position("b2");
-        assertFalse(piece.verifyMovePosition(sourcePosition, targetPosition));
+        // When
+        Piece piece = createWhitePawn();
+
+        // Then
+        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition1));
+        assertFalse(piece.verifyMovePosition(sourcePosition, targetPosition2));
     }
 
     @Test
     @DisplayName("White Pawn 기물의 첫 이동 예외처리(두 칸 전진 가능)를 할 수 있어야 한다")
     void verifyMoveWhiteFirst() {
+        // Given
         Position sourcePosition = new Position("d2");
         Position targetPosition = new Position("d4");
+
+        // When
         Piece piece = createWhitePawn();
+
+        // Then
         assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition));
     }
 
     @Test
     @DisplayName("Black Pawn 기물의 움직임 가능 여부를 판별할 수 있어야 한다")
     void verifyMoveBlack() {
+        // Given
         Position sourcePosition = new Position("h5");
-        Position targetPosition = new Position("g4");
-        Piece piece = createBlackPawn();
-        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition));
+        Position targetPosition1 = new Position("g4");
+        Position targetPosition2 = new Position("h3");
 
-        targetPosition = new Position("h3");
-        assertFalse(piece.verifyMovePosition(sourcePosition, targetPosition));
+        // When
+        Piece piece = createBlackPawn();
+
+        // Then
+        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition1));
+        assertFalse(piece.verifyMovePosition(sourcePosition, targetPosition2));
     }
 
     @Test
     @DisplayName("Black Pawn 기물의 첫 이동 예외처리(두 칸 전진 가능)를 할 수 있어야 한다")
     void verifyMoveBlackFirst() {
+        // Given
         Position sourcePosition = new Position("e7");
         Position targetPosition = new Position("e5");
+
+        // When
         Piece piece = createBlackPawn();
+
+        // Then
         assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition));
     }
 }
