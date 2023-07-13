@@ -4,6 +4,7 @@ import softeer2nd.chess.board.Board;
 import softeer2nd.chess.board.ChessGame;
 import softeer2nd.chess.board.ChessView;
 import softeer2nd.chess.Position;
+import softeer2nd.chess.pieces.Piece;
 
 import java.util.Scanner;
 
@@ -33,6 +34,8 @@ public class Player {
             String command = scanner.nextLine();
             gameAction(command.toLowerCase());
         }
+        System.out.println("White Team Point: " + chessGame.calculatePoint(board, Piece.Color.WHITE));
+        System.out.println("Black Team Point: " + chessGame.calculatePoint(board, Piece.Color.BLACK));
     }
 
     private static void gameAction(String command) {
