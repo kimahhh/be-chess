@@ -7,6 +7,8 @@ import softeer2nd.chess.Position;
 
 import java.util.Scanner;
 
+import static softeer2nd.chess.Board.ChessGame.move;
+
 public class Player {
     private static boolean isStart = false;
     private static boolean isContinue = true;
@@ -62,7 +64,11 @@ public class Player {
 
     private static void movePiece(String command) {
         String[] commands = command.split(" ");
-        chessGame.move(board, new Position(commands[1]), new Position(commands[2]));
+        try {
+            move(board, new Position(commands[1]), new Position(commands[2]));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println(chessView.showBoardWithXY(board));
     }
 }

@@ -50,10 +50,6 @@ public class ChessGame {
     }
 
     public static void move(Board board, Position sourcePosition, Position targetPosition) {
-        if (!isInBoard(targetPosition)) {
-            System.out.println("체스판 내에서만 이동할 수 있습니다.");
-            return;
-        }
         Piece piece = board.findPiece(sourcePosition);
         if (!piece.verifyMovePosition(sourcePosition, targetPosition)) {
             System.out.println("현재 선택한 기물은 해당 위치로 이동할 수 없습니다.");
