@@ -7,6 +7,7 @@ import softeer2nd.chess.Position;
 
 import java.util.Scanner;
 
+import static softeer2nd.chess.board.ChessGame.isWhiteTurn;
 import static softeer2nd.chess.board.ChessGame.move;
 
 public class Player {
@@ -39,12 +40,15 @@ public class Player {
                 endGame();
                 break;
             default:
+                if (!isStart) {
+                    System.out.println(NOT_START_YET);
+                    return;
+                }
                 if (command.startsWith("move")) {
-                    if (!isStart) {
-                        System.out.println(NOT_START_YET);
-                        return;
-                    }
                     movePiece(command);
+                }
+                else if (command.equals("resigns")) {
+                    resignGame();
                 }
                 else {
                     System.out.println(RIGHT_COMMAND);
@@ -65,6 +69,11 @@ public class Player {
     private static void endGame() {
         isContinue = false;
         System.out.println(GAME_IS_END);
+    }
+
+    private static void resignGame() {
+        System.out.println(isWhiteTurn ? "Black Win!" : "White Win!");
+        endGame();
     }
 
     private static void movePiece(String command) {

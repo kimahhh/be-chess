@@ -9,7 +9,7 @@ import static softeer2nd.chess.pieces.Piece.*;
 import static softeer2nd.exception.Exception.*;
 
 public class ChessGame {
-    private static boolean isWhiteTurn;
+    public static boolean isWhiteTurn;
 
     public ChessGame() {
         isWhiteTurn = true;
