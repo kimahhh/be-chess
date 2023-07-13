@@ -20,7 +20,10 @@ public enum Direction {
     EEN(2, 1),
     EES(2, -1),
     WWN(-2, 1),
-    WWS(-2, -1);
+    WWS(-2, -1),
+
+    NN(0, 2),
+    SS(0, -2);
 
     private int xDegree;
     private int yDegree;

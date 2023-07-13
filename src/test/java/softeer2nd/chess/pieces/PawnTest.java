@@ -36,6 +36,15 @@ class PawnTest {
     }
 
     @Test
+    @DisplayName("White Pawn 기물의 첫 이동 예외처리(두 칸 전진 가능)를 할 수 있어야 한다")
+    void verifyMoveWhiteFirst() {
+        Position sourcePosition = new Position("d2");
+        Position targetPosition = new Position("d4");
+        Piece piece = createWhitePawn();
+        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition));
+    }
+
+    @Test
     @DisplayName("Black Pawn 기물의 움직임 가능 여부를 판별할 수 있어야 한다")
     void verifyMoveBlack() {
         Position sourcePosition = new Position("h5");
@@ -45,5 +54,14 @@ class PawnTest {
 
         targetPosition = new Position("h3");
         assertFalse(piece.verifyMovePosition(sourcePosition, targetPosition));
+    }
+
+    @Test
+    @DisplayName("Black Pawn 기물의 첫 이동 예외처리(두 칸 전진 가능)를 할 수 있어야 한다")
+    void verifyMoveBlackFirst() {
+        Position sourcePosition = new Position("e7");
+        Position targetPosition = new Position("e5");
+        Piece piece = createBlackPawn();
+        assertTrue(piece.verifyMovePosition(sourcePosition, targetPosition));
     }
 }
