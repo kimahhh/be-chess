@@ -8,6 +8,8 @@ import java.util.Objects;
 import static softeer2nd.exception.Exception.*;
 
 public class Position {
+
+    private String positionRegex = "[a-h][1-8]";
     private int x;
     private int y;
 
@@ -34,19 +36,9 @@ public class Position {
     }
 
     private List<Integer> verifyValidPosition(String coordinate) {
-        if (coordinate.length() != 2) {
-            throw new IllegalArgumentException(POSITION_WRONG_LENGTH.getMessage());
-        }
-        char column = coordinate.charAt(0);
-        char row = coordinate.charAt(1);
-
-        if (column < 'a' || column > 'h') {
-            throw new IllegalArgumentException(POSITION_WRONG_COLUMN.getMessage());
-        }
-        if (row < '1' || row > '8') {
-            throw new IllegalArgumentException(POSITION_WRONG_ROW.getMessage());
-        }
-        return new ArrayList<>(Arrays.asList(char2int(column), numChar2int(row)));
+        if (coordinate.matches(positionRegex))
+            return new ArrayList<>(Arrays.asList(char2int(coordinate.charAt(0)), numChar2int(coordinate.charAt(1))));
+        throw new IllegalArgumentException(POSITION_WRONG_INPUT.getMessage());
     }
 
     @Override

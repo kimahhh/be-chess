@@ -1,9 +1,7 @@
 package softeer2nd.exception;
 
 public enum Exception {
-    POSITION_WRONG_LENGTH("위치값은 알파벳 a~h 중 하나와 숫자 1~8 중 하나의 값으로 이루어져 있습니다."),
-    POSITION_WRONG_COLUMN("열 값은 a~h 중 하나를 입력해주세요."),
-    POSITION_WRONG_ROW("행 값은 1~8 중 하나를 입력해주세요."),
+    POSITION_WRONG_INPUT("위치값이 적절하지 않습니다. [a-h][1-8] 형식으로 입력해주세요."),
     POSITION_MOVE_TO_SAME_POSITION("같은 위치로는 이동할 수 없습니다."),
     PIECE_INVALID_POSITION("현재 선택한 기물은 해당 위치로 이동할 수 없습니다."),
     PIECE_INVALID_COLOR("색깔이 적절하지 않습니다."),
