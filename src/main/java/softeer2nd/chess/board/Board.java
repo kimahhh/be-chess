@@ -32,7 +32,7 @@ public class Board {
     }
 
     public ArrayList<Rank> getBoard() {
-        return this.board;
+        return board;
     }
 
     public Piece findPiece(Position position) {

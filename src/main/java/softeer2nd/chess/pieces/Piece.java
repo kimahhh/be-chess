@@ -28,11 +28,11 @@ public abstract class Piece {
         }
 
         public char getWhiteRepresentation() {
-            return this.representation;
+            return representation;
         }
 
         public char getBlackRepresentation() {
-            return Character.toUpperCase(this.representation);
+            return Character.toUpperCase(representation);
         }
     }
 
@@ -40,8 +40,8 @@ public abstract class Piece {
     private final Type type;
 
     private Piece() {
-        this.color = Color.NO_COLOR;
-        this.type = Type.NO_PIECE;
+        color = Color.NO_COLOR;
+        type = Type.NO_PIECE;
     }
 
     protected Piece(Color color, Type type) {
@@ -116,20 +116,20 @@ public abstract class Piece {
     }
 
     public boolean isBlack() {
-        return this.color.equals(Color.BLACK);
+        return color.equals(Color.BLACK);
     }
     public boolean isWhite() {
-        return this.color.equals(Color.WHITE);
+        return color.equals(Color.WHITE);
     }
 
     public Color getColor() {
-        return this.color;
+        return color;
     }
     public Type getType() {
-        return this.type;
+        return type;
     }
     public char getRepresentation() {
-        switch (this.color) {
+        switch (color) {
             case WHITE:
             case NO_COLOR:
                 return type.getWhiteRepresentation();
