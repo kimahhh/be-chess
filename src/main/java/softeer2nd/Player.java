@@ -15,10 +15,15 @@ public class Player {
     private static Board board;
     private static ChessView chessView;
     private static ChessGame chessGame;
+    private static final String ENTER_START = "Enter 'Start' to begin the game";
+    private static final String NOT_START_YET = "아직 게임이 시작하지 않았습니다.";
+    private static final String RIGHT_COMMAND = "적절한 명령어를 입력해주세요.";
+    private static final String GAME_IS_START = "Game is start";
+    private static final String GAME_IS_END = "Game is end";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter 'Start' to begin the game");
+        System.out.println(ENTER_START);
         while(isContinue) {
             String command = scanner.nextLine();
             gameAction(command.toLowerCase());
@@ -36,19 +41,19 @@ public class Player {
             default:
                 if (command.startsWith("move")) {
                     if (!isStart) {
-                        System.out.println("아직 게임이 시작하지 않았습니다");
+                        System.out.println(NOT_START_YET);
                         return;
                     }
                     movePiece(command);
                 }
                 else {
-                    System.out.println("적절한 명령어를 입력해주세요");
+                    System.out.println(RIGHT_COMMAND);
                 }
         }
     }
 
     private static void startGame() {
-        System.out.println("Game is start");
+        System.out.println(GAME_IS_START);
         isStart = true;
         board = new Board();
         chessView = new ChessView();
@@ -59,7 +64,7 @@ public class Player {
 
     private static void endGame() {
         isContinue = false;
-        System.out.println("Game is end");
+        System.out.println(GAME_IS_END);
     }
 
     private static void movePiece(String command) {

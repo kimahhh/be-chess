@@ -4,6 +4,7 @@ import softeer2nd.chess.Position;
 
 import static softeer2nd.chess.Direction.blackPawnDirection;
 import static softeer2nd.chess.Direction.whitePawnDirection;
+import static softeer2nd.exception.Exception.PIECE_INVALID_COLOR;
 
 public class Pawn extends Piece {
     private Pawn(Color color) {
@@ -29,7 +30,7 @@ public class Pawn extends Piece {
                 return blackPawnDirection().stream()
                         .anyMatch(direction -> direction.getXDegree() == dx && direction.getYDegree() == dy);
             default:
-                throw new IllegalArgumentException("적절한 색깔이 아닙니다.");
+                throw new IllegalArgumentException(PIECE_INVALID_COLOR.getMessage());
         }
     }
 }

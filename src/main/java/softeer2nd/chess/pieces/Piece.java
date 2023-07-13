@@ -4,6 +4,8 @@ import softeer2nd.chess.Position;
 
 import java.util.Objects;
 
+import static softeer2nd.exception.Exception.*;
+
 public abstract class Piece {
     public enum Color {
         WHITE, BLACK, NO_COLOR;
@@ -60,7 +62,7 @@ public abstract class Piece {
             case BLACK:
                 return createBlack(type);
             default:
-                throw new IllegalArgumentException("색깔이 적절하지 않습니다.");
+                throw new IllegalArgumentException(PIECE_INVALID_COLOR.getMessage());
         }
     }
 
@@ -72,7 +74,7 @@ public abstract class Piece {
                 return type == Type.NO_PIECE ? createBlank() : createPiece(isBlack ? Color.BLACK : Color.WHITE, type);
             }
         }
-        throw new IllegalArgumentException("잘못된 식별 문자 입니다");
+        throw new IllegalArgumentException(PIECE_INVALID_REPRESENTATION.getMessage());
     }
 
     private static Piece createWhite(Type type) {
@@ -90,7 +92,7 @@ public abstract class Piece {
             case PAWN:
                 return Pawn.createWhitePawn();
             default:
-                throw new IllegalArgumentException("백색 기물 생성: 종류가 적절하지 않습니다.");
+                throw new IllegalArgumentException(PIECE_INVALID_TYPE.getMessage());
         }
     }
 
@@ -109,7 +111,7 @@ public abstract class Piece {
             case PAWN:
                 return Pawn.createBlackPawn();
             default:
-                throw new IllegalArgumentException("흑색 기물 생성: 종류가 적절하지 않습니다.");
+                throw new IllegalArgumentException(PIECE_INVALID_TYPE.getMessage());
         }
     }
 
@@ -134,7 +136,7 @@ public abstract class Piece {
             case BLACK:
                 return type.getBlackRepresentation();
             default:
-                throw new IllegalArgumentException("색깔이 적절하지 않습니다.");
+                throw new IllegalArgumentException(PIECE_INVALID_COLOR.getMessage());
         }
     }
     public double getPoint() {
