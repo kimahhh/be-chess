@@ -123,6 +123,9 @@ public abstract class Piece {
     public boolean isWhite() {
         return color.equals(Color.WHITE);
     }
+    public boolean isEmpty() {
+        return type.equals(Type.NO_PIECE);
+    }
 
     public Color getColor() {
         return color;

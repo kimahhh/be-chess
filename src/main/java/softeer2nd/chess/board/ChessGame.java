@@ -80,7 +80,7 @@ public class ChessGame {
     }
 
     private static void checkTurn(Piece piece) {
-        if (isWhiteTurn == piece.isWhite()) return;
+        if (isWhiteTurn == piece.isWhite() || piece.isEmpty()) return;
         throw new IllegalArgumentException((isWhiteTurn ? "흰" : "검은") + NOT_YOUR_TURN.getMessage());
     }
 
