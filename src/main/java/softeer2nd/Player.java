@@ -82,6 +82,9 @@ public class Player {
             move(board, new Position(commands[1]), new Position(commands[2]));
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            if (e.getMessage().endsWith("승리했습니다.")) {
+                endGame();
+            }
         }
         System.out.println(chessView.showBoardWithXY(board));
     }

@@ -70,6 +70,7 @@ public class ChessGame {
             move(board, sourcePosition, createBlank());
         }
         move(board, targetPosition, piece);
+        checkWinOrLose(diePiece);
         changeTurn();
     }
 
@@ -99,6 +100,11 @@ public class ChessGame {
     private static void checkColor(Piece sourcePiece, Piece targetPiece) {
         if (sourcePiece.isWhite() == targetPiece.isWhite() && sourcePiece.isBlack() == targetPiece.isBlack())
             throw new IllegalArgumentException(PIECE_CANT_CATCH_SAME_COLOR.getMessage());
+    }
+
+    private static void checkWinOrLose(Piece diePiece) {
+        if (diePiece.getType().equals(Type.KING))
+            throw new IllegalArgumentException((isWhiteTurn ? "흰" : "검은") + WIN_OR_LOSE.getMessage());
     }
 
     private static void changeTurn() {

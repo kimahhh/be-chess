@@ -10,7 +10,8 @@ public enum Exception {
     PIECE_INVALID_TYPE("종류가 적절하지 않습니다."),
     PIECE_CANT_CATCH_SAME_COLOR("같은 색의 기물은 잡을 수 없습니다."),
     BLANK_CANT_MOVE("입력한 출발점에는 기물이 없습니다."),
-    NOT_YOUR_TURN(" 색 기물이 움직일 차례입니다.");
+    NOT_YOUR_TURN(" 색 기물이 움직일 차례입니다."),
+    WIN_OR_LOSE(" 색 팀이 승리했습니다.");
 
     private final String message;
 

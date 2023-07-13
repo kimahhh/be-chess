@@ -269,7 +269,29 @@ class ChessGameTest {
 
         // Then
         assertEquals(PIECE_CANT_CATCH_SAME_COLOR.getMessage(), exception.getMessage());
+    }
 
+    @Test
+    @DisplayName("King을 잡으면 승패를 결정한다")
+    void winOrLose() {
+        // Given
+        String sample = "........" +
+                "........" +
+                "..q....." +
+                "........" +
+                "........" +
+                ".....K.." +
+                "........" +
+                "........";
+
+        // When
+        chessGame.initialize(board, sample);
+        Exception exception = assertThrows(Exception.class, () -> {
+            move(board, new Position("c6"), new Position("f3"));
+        });
+
+        // Then
+        assertEquals("흰" + WIN_OR_LOSE.getMessage(), exception.getMessage());
     }
 
     @Test
