@@ -10,8 +10,7 @@ import softeer2nd.chess.pieces.Piece;
 import static org.junit.jupiter.api.Assertions.*;
 import static softeer2nd.chess.board.ChessGame.move;
 import static softeer2nd.chess.pieces.Piece.*;
-import static softeer2nd.exception.Exception.PIECE_CANT_CATCH_SAME_COLOR;
-import static softeer2nd.exception.Exception.PIECE_INVALID_POSITION;
+import static softeer2nd.exception.Exception.*;
 import static softeer2nd.utils.StringUtils.appendNewLine;
 
 class ChessGameTest {
@@ -128,6 +127,19 @@ class ChessGameTest {
 
         assertEquals(createBlank(), board.findPiece(sourcePosition));
         assertEquals(Pawn.createWhitePawn(), board.findPiece(targetPosition));
+    }
+
+    @Test
+    @DisplayName("같은 위치로는 이동할 수 없어야 한다")
+    void cantMoveToSamePosition() {
+        chessGame.initializeBasic(board);
+        Position sourcePosition = new Position("b2");
+        Position targetPosition = new Position("b2");
+        Exception exception = assertThrows(Exception.class, () -> {
+            move(board, sourcePosition, targetPosition);
+        });
+
+        assertEquals(POSITION_MOVE_TO_SAME_POSITION.getMessage(), exception.getMessage());
     }
 
     @Test

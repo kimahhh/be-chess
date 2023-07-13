@@ -6,8 +6,7 @@ import softeer2nd.chess.pieces.Piece;
 
 import static softeer2nd.chess.board.Board.BOARD_SIZE;
 import static softeer2nd.chess.pieces.Piece.*;
-import static softeer2nd.exception.Exception.PIECE_CANT_CATCH_SAME_COLOR;
-import static softeer2nd.exception.Exception.PIECE_INVALID_POSITION;
+import static softeer2nd.exception.Exception.*;
 
 public class ChessGame {
 
@@ -52,6 +51,7 @@ public class ChessGame {
     }
 
     public static void move(Board board, Position sourcePosition, Position targetPosition) {
+        checkSamePosition(sourcePosition, targetPosition);
         Piece piece = board.findPiece(sourcePosition);
         checkMove(piece, sourcePosition, targetPosition);
         Piece diePiece = board.findPiece(targetPosition);
@@ -63,6 +63,11 @@ public class ChessGame {
             move(board, sourcePosition, createBlank());
         }
         move(board, targetPosition, piece);
+    }
+
+    private static void checkSamePosition(Position sourcePosition, Position targetPosition) {
+        if (sourcePosition.equals(targetPosition))
+            throw new IllegalArgumentException(POSITION_MOVE_TO_SAME_POSITION.getMessage());
     }
 
     private static void checkMove(Piece piece, Position sourcePosition, Position targetPosition) {

@@ -3,6 +3,7 @@ package softeer2nd.chess;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import static softeer2nd.exception.Exception.*;
 
@@ -46,5 +47,18 @@ public class Position {
             throw new IllegalArgumentException(POSITION_WRONG_ROW.getMessage());
         }
         return new ArrayList<>(Arrays.asList(char2int(column), numChar2int(row)));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position = (Position) o;
+        return x == position.x && y == position.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }
