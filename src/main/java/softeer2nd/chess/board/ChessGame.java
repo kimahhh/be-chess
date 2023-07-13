@@ -20,7 +20,7 @@ public class ChessGame {
         for(int y = 0;y < BOARD_SIZE;y++) {
             Rank rank = new Rank();
             for (int x = 0;x < BOARD_SIZE;x++) {
-                rank.rank.add(createPiece(boardString.charAt(y * BOARD_SIZE + x)));
+                rank.addPiece(createPiece(boardString.charAt(y * BOARD_SIZE + x)));
             }
             board.getBoard().add(rank);
         }
@@ -52,7 +52,7 @@ public class ChessGame {
 
     public static void move(Board board, Position position, Piece piece) {
         board.getBoard().get(position.getY())
-                .rank.set(position.getX(), piece);
+                .setPiece(position.getX(), piece);
     }
 
     public static void move(Board board, Position sourcePosition, Position targetPosition) {
@@ -98,7 +98,7 @@ public class ChessGame {
 
     public double calculatePoint(Board board, Color color) {
         return board.getBoard().stream()
-                .flatMap(rank -> rank.rank.stream())
+                .flatMap(rank -> rank.getRank().stream())
                 .filter(piece -> piece.getColor().equals(color))
                 .mapToDouble(Piece::getPoint)
                 .sum() - countSameLinePawn(board, color) * 0.5;
@@ -109,7 +109,7 @@ public class ChessGame {
         for (int x = 0;x < BOARD_SIZE;x++) {
             int cnt = 0;
             for (Rank rank : board.getBoard()) {
-                Piece piece = rank.rank.get(x);
+                Piece piece = rank.getPiece(x);
                 if (piece.getType().equals(Piece.Type.PAWN) && piece.getColor().equals(color)) {
                     cnt++;
                 }

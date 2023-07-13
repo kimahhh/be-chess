@@ -19,14 +19,14 @@ public class Board {
 
     public int pieceCount() {
         return (int) board.stream()
-                .flatMap(rank -> rank.rank.stream())
+                .flatMap(rank -> rank.getRank().stream())
                 .filter(piece -> !piece.getType().equals(Type.NO_PIECE))
                 .count();
     }
 
     public int pieceCount(Color color, Type type) {
         return (int) board.stream()
-                .flatMap(rank -> rank.rank.stream())
+                .flatMap(rank -> rank.getRank().stream())
                 .filter(piece -> piece.getColor().equals(color) && piece.getType().equals(type))
                 .count();
     }
@@ -36,13 +36,13 @@ public class Board {
     }
 
     public Piece findPiece(Position position) {
-        return board.get(position.getY()).rank.get(position.getX());
+        return board.get(position.getY()).getPiece(position.getX());
     }
 
     public String getRankResult(int index) {
         index = BOARD_SIZE - index;
         StringBuilder stringBuilder = new StringBuilder();
-        for (Piece piece : board.get(index).rank) {
+        for (Piece piece : board.get(index).getRank()) {
             stringBuilder.append(piece.getRepresentation());
         }
         return stringBuilder.toString();
@@ -50,7 +50,7 @@ public class Board {
 
     public ArrayList<Piece> sortAscPieces(Color color) {
         return board.stream()
-                .flatMap(rank -> rank.rank.stream())
+                .flatMap(rank -> rank.getRank().stream())
                 .filter(piece -> piece.getColor().equals(color))
                 .sorted(Comparator.comparingDouble(Piece::getPoint))
                 .collect(Collectors.toCollection(ArrayList::new));
@@ -58,7 +58,7 @@ public class Board {
 
     public ArrayList<Piece> sortDescPieces(Color color) {
         return board.stream()
-                .flatMap(rank -> rank.rank.stream())
+                .flatMap(rank -> rank.getRank().stream())
                 .filter(piece -> piece.getColor().equals(color))
                 .sorted(Comparator.comparingDouble(Piece::getPoint).reversed())
                 .collect(Collectors.toCollection(ArrayList::new));

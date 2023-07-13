@@ -8,7 +8,7 @@ public class ChessView {
     public String showBoard(Board board) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Rank rank: board.getBoard()) {
-            for (Piece piece : rank.rank) {
+            for (Piece piece : rank.getRank()) {
                 stringBuilder.append(piece.getRepresentation());
             }
             appendNewLine(stringBuilder);
@@ -20,7 +20,7 @@ public class ChessView {
         StringBuilder stringBuilder = new StringBuilder();
         int y = 8;
         for (Rank rank: board.getBoard()) {
-            for (Piece piece : rank.rank) {
+            for (Piece piece : rank.getRank()) {
                 stringBuilder.append(piece.getRepresentation());
             }
             stringBuilder.append("  ").append(y--);
