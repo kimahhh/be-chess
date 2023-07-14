@@ -6,7 +6,7 @@ import java.util.List;
 
 import static softeer2nd.chess.Direction.everyDirection;
 
-public class King extends Piece{
+public class King extends Piece {
     private King(Color color) {
         super(color, Type.KING);
     }
@@ -14,6 +14,7 @@ public class King extends Piece{
     public static King createWhiteKing() {
         return new King(Color.WHITE);
     }
+
     public static King createBlackKing() {
         return new King(Color.BLACK);
     }

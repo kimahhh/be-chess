@@ -17,9 +17,9 @@ public class ChessGame {
 
     public void initialize(Board board, String boardString) {
         board.getBoard().clear();
-        for(int y = 0;y < BOARD_SIZE;y++) {
+        for (int y = 0; y < BOARD_SIZE; y++) {
             Rank rank = new Rank();
-            for (int x = 0;x < BOARD_SIZE;x++) {
+            for (int x = 0; x < BOARD_SIZE; x++) {
                 rank.addPiece(createPiece(boardString.charAt(y * BOARD_SIZE + x)));
             }
             board.getBoard().add(rank);
@@ -65,8 +65,7 @@ public class ChessGame {
         checkColor(piece, diePiece);
         if (diePiece.getType().equals(Piece.Type.NO_PIECE)) {
             move(board, sourcePosition, diePiece);
-        }
-        else {
+        } else {
             move(board, sourcePosition, createBlank());
         }
         move(board, targetPosition, piece);
@@ -121,7 +120,7 @@ public class ChessGame {
 
     private int countSameLinePawn(Board board, Color color) {
         int num = 0;
-        for (int x = 0;x < BOARD_SIZE;x++) {
+        for (int x = 0; x < BOARD_SIZE; x++) {
             int cnt = 0;
             for (Rank rank : board.getBoard()) {
                 Piece piece = rank.getPiece(x);

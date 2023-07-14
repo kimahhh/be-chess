@@ -10,7 +10,7 @@ class PieceTest {
 
     @Test
     @DisplayName("색과 종류를 입력받아 기물을 생성할 수 있어야 한다")
-    public void create() {
+    void create() {
         verifyCreatePiece(createPiece(Color.WHITE, Type.KING), Color.WHITE, Type.KING);
         verifyCreatePiece(createPiece(Color.BLACK, Type.KING), Color.BLACK, Type.KING);
         verifyCreatePiece(createPiece(Color.WHITE, Type.QUEEN), Color.WHITE, Type.QUEEN);
@@ -35,7 +35,7 @@ class PieceTest {
 
     @Test
     @DisplayName("색과 종류를 입력받아 생성된 기물의 색깔을 확인할 수 있어야 한다")
-    public void color() {
+    void color() {
         verifyWhitePiece(createPiece(Color.WHITE, Type.KING));
         verifyWhitePiece(createPiece(Color.WHITE, Type.QUEEN));
         verifyWhitePiece(createPiece(Color.WHITE, Type.ROOK));
@@ -56,10 +56,12 @@ class PieceTest {
         assertTrue(piece.isWhite());
         assertFalse(piece.isBlack());
     }
+
     private void verifyBlackPiece(final Piece piece) {
         assertTrue(piece.isBlack());
         assertFalse(piece.isWhite());
     }
+
     private void verifyBlank(final Piece piece) {
         assertFalse(piece.isWhite());
         assertFalse(piece.isBlack());
@@ -68,7 +70,7 @@ class PieceTest {
 
     @Test
     @DisplayName("흰색 기물일 때는 소문자, 검은색 기물일 때는 대문자 식별 문자가 출력되어야 한다")
-    public void getRepresentationPerPiece() {
+    void getRepresentationPerPiece() {
         // Given, When
         Piece whitePawn = createPiece(Color.WHITE, Type.PAWN);
 

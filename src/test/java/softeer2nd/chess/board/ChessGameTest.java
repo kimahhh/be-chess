@@ -29,7 +29,7 @@ class ChessGameTest {
 
     @Test
     @DisplayName("Board를 초기화할 수 있어야 한다")
-    public void initialize() {
+    void initialize() {
         // When
         chessGame.initializeBasic(board);
 
@@ -55,7 +55,7 @@ class ChessGameTest {
 
     @Test
     @DisplayName("Board를 입력받는 String을 사용해 초기화할 수 있어야 한다")
-    public void initializeState() {
+    void initializeState() {
         // Given
         String boardString = ".KR.....\n" +
                 "P.PB....\n" +
@@ -107,7 +107,7 @@ class ChessGameTest {
 
     @Test
     @DisplayName("좌표와 기물을 인자로 받아 해당 좌표로 해당 기물을 이동할 수 있어야 한다")
-    public void moveTest() {
+    void moveTest() {
         // When
         chessGame.initializeEmpty(board);
 
@@ -121,7 +121,7 @@ class ChessGameTest {
 
     @Test
     @DisplayName("현재 좌표와 타겟 좌표를 인자로 받아 현재 좌표에 있는 기물을 타겟 좌표로 이동할 수 있어야 한다")
-    public void moveWithCoordinate() {
+    void moveWithCoordinate() {
         // When
         chessGame.initializeBasic(board);
 
@@ -165,7 +165,7 @@ class ChessGameTest {
         // When
         move(board, new Position("d2"), new Position("d4"));
         exception = assertThrows(Exception.class, () -> {
-            move(board,new Position("d1"), new Position("d2"));
+            move(board, new Position("d1"), new Position("d2"));
         });
 
         // Then
@@ -264,7 +264,7 @@ class ChessGameTest {
         Position sourcePosition = new Position("d1");
         Position targetPosition = new Position("e2");
         Exception exception = assertThrows(Exception.class, () -> {
-           move(board, sourcePosition, targetPosition);
+            move(board, sourcePosition, targetPosition);
         });
 
         // Then
@@ -296,7 +296,7 @@ class ChessGameTest {
 
     @Test
     @DisplayName("같은 세로줄에 같은 색의 폰이 없는 경우의 점수를 계산할 수 있다")
-    public void calculatePointNoSameLinePawn() {
+    void calculatePointNoSameLinePawn() {
         // Given
         String noSameLinePawn = ".KR....." +
                 "P.PB...." +
@@ -317,7 +317,7 @@ class ChessGameTest {
 
     @Test
     @DisplayName("같은 세로줄에 같은 색의 폰이 있는 경우의 점수를 계산할 수 있다")
-    public void calculatePointYesSameLinePawn() {
+    void calculatePointYesSameLinePawn() {
         // Given
         String yesSameLinePawn = ".KR....." +
                 "P.PB...." +
@@ -338,7 +338,7 @@ class ChessGameTest {
 
     @Test
     @DisplayName("특정 상태의 체스판의 점수를 계산할 수 있다")
-    public void calculatePoint() {
+    void calculatePoint() {
         // When
         chessGame.initializeEmpty(board);
 

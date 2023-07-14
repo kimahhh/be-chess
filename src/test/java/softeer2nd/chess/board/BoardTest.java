@@ -18,7 +18,7 @@ class BoardTest {
     private ChessGame chessGame;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         // Given
         board = new Board();
         chessGame = new ChessGame();
@@ -29,7 +29,7 @@ class BoardTest {
 
     @Test
     @DisplayName("모든 기물의 개수를 반환할 수 있어야 한다")
-    public void getPieceCount() {
+    void getPieceCount() {
         // Then
         assertEquals(32, board.pieceCount());
 
@@ -52,7 +52,7 @@ class BoardTest {
 
     @Test
     @DisplayName("기물의 색과 종류를 인자로 받아 해당 기물의 개수를 반환할 수 있어야 한다")
-    public void getPieceCountWithColorAndType() {
+    void getPieceCountWithColorAndType() {
         // Then
         assertEquals(8, board.pieceCount(Color.WHITE, Type.PAWN));
         assertEquals(2, board.pieceCount(Color.BLACK, Type.ROOK));
@@ -61,7 +61,7 @@ class BoardTest {
 
     @Test
     @DisplayName("좌표를 인자로 받아 해당 좌표의 기물을 조회할 수 있어야 한다")
-    public void getPieceWithCoordinate() {
+    void getPieceWithCoordinate() {
         // Then
         assertEquals(createPiece(Color.BLACK, Type.ROOK), board.findPiece(new Position("a8")));
         assertEquals(createPiece(Color.WHITE, Type.KING), board.findPiece(new Position("e1")));
@@ -69,7 +69,7 @@ class BoardTest {
 
     @Test
     @DisplayName("기물의 점수가 낮은 순으로 정렬할 수 있어야 한다")
-    public void sortAscPieces() {
+    void sortAscPieces() {
         // Given
         String noSameLinePawn = ".KR....." +
                 "P.PB...." +
@@ -93,7 +93,7 @@ class BoardTest {
 
     @Test
     @DisplayName("기물의 점수가 높은 순으로 정렬할 수 있어야 한다")
-    public void sortDescPieces() {
+    void sortDescPieces() {
         // Given
         String yesSameLinePawn = ".KR....." +
                 "P.PB...." +

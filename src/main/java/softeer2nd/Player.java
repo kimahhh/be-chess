@@ -27,7 +27,7 @@ public class Player {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(ENTER_START);
-        while(isContinue) {
+        while (isContinue) {
             if (isStart) {
                 System.out.println(COMMAND_INFO);
             }
@@ -53,11 +53,9 @@ public class Player {
                 }
                 if (command.startsWith("move")) {
                     movePiece(command);
-                }
-                else if (command.equals("resigns")) {
+                } else if (command.equals("resigns")) {
                     resignGame();
-                }
-                else {
+                } else {
                     System.out.println(RIGHT_COMMAND);
                 }
         }

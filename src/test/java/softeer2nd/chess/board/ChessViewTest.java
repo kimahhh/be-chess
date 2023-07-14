@@ -14,7 +14,7 @@ class ChessViewTest {
     private ChessGame chessGame;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         // Given
         board = new Board();
         chessView = new ChessView();
@@ -23,7 +23,7 @@ class ChessViewTest {
 
     @Test
     @DisplayName("Board를 출력할 수 있어야 한다")
-    public void printBoard() {
+    void printBoard() {
         // When
         String basic = "RNBQKBNR\n" +
                 "PPPPPPPP\n" +
@@ -41,7 +41,7 @@ class ChessViewTest {
 
     @Test
     @DisplayName("Board의 상태를 좌표와 함께 출력할 수 있어야 한다")
-    public void showBoardWithXYTest() {
+    void showBoardWithXYTest() {
         // Given
         String boardString = ".KR.....  8\n" +
                 "P.PB....  7\n" +

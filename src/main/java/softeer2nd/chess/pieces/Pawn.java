@@ -16,6 +16,7 @@ public class Pawn extends Piece {
     public static Pawn createWhitePawn() {
         return new Pawn(Color.WHITE);
     }
+
     public static Pawn createBlackPawn() {
         return new Pawn(Color.BLACK);
     }
@@ -35,7 +36,7 @@ public class Pawn extends Piece {
     }
 
     private boolean verifyWhiteMovePosition(Position sourcePosition, int dx, int dy) {
-        boolean match =  whitePawnDirection().stream()
+        boolean match = whitePawnDirection().stream()
                 .anyMatch(direction -> direction.getXDegree() == dx && direction.getYDegree() == dy);
         if (match) return true;
         if (sourcePosition.getY() + 2 == BOARD_SIZE) return NN.getXDegree() == dx && NN.getYDegree() == dy;
@@ -43,7 +44,7 @@ public class Pawn extends Piece {
     }
 
     private boolean verifyBlackMovePosition(Position sourcePosition, int dx, int dy) {
-        boolean match =  blackPawnDirection().stream()
+        boolean match = blackPawnDirection().stream()
                 .anyMatch(direction -> direction.getXDegree() == dx && direction.getYDegree() == dy);
         if (match) return true;
         if (sourcePosition.getY() + 7 == BOARD_SIZE) return SS.getXDegree() == dx && SS.getYDegree() == dy;

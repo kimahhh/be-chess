@@ -18,6 +18,7 @@ public class Bishop extends Piece {
     public static Bishop createWhiteBishop() {
         return new Bishop(Color.WHITE);
     }
+
     public static Bishop createBlackBishop() {
         return new Bishop(Color.BLACK);
     }
@@ -45,7 +46,7 @@ public class Bishop extends Piece {
         int sourceX = sourcePosition.getX();
         int sourceY = sourcePosition.getY();
         ArrayList<Position> positions = new ArrayList<>();
-        for (int i = 1;i < Math.abs(dx);i++) {
+        for (int i = 1; i < Math.abs(dx); i++) {
             positions.add(new Position(sourceX + direction.getXDegree() * i, sourceY - direction.getYDegree() * i));
         }
         return positions;

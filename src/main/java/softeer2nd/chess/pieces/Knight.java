@@ -14,6 +14,7 @@ public class Knight extends Piece {
     public static Knight createWhiteKnight() {
         return new Knight(Color.WHITE);
     }
+
     public static Knight createBlackKnight() {
         return new Knight(Color.BLACK);
     }

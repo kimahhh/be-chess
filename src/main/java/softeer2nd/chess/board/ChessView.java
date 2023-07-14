@@ -7,7 +7,7 @@ import static softeer2nd.utils.StringUtils.appendNewLine;
 public class ChessView {
     public String showBoard(Board board) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Rank rank: board.getBoard()) {
+        for (Rank rank : board.getBoard()) {
             for (Piece piece : rank.getRank()) {
                 stringBuilder.append(piece.getRepresentation());
             }
@@ -19,7 +19,7 @@ public class ChessView {
     public String showBoardWithXY(Board board) {
         StringBuilder stringBuilder = new StringBuilder();
         int y = 8;
-        for (Rank rank: board.getBoard()) {
+        for (Rank rank : board.getBoard()) {
             for (Piece piece : rank.getRank()) {
                 stringBuilder.append(piece.getRepresentation());
             }

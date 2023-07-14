@@ -18,6 +18,7 @@ public class Rook extends Piece {
     public static Rook createWhiteRook() {
         return new Rook(Color.WHITE);
     }
+
     public static Rook createBlackRook() {
         return new Rook(Color.BLACK);
     }
@@ -45,7 +46,7 @@ public class Rook extends Piece {
         int sourceX = sourcePosition.getX();
         int sourceY = sourcePosition.getY();
         ArrayList<Position> positions = new ArrayList<>();
-        for (int i = 1;i < Math.max(Math.abs(dx), Math.abs(dy));i++) {
+        for (int i = 1; i < Math.max(Math.abs(dx), Math.abs(dy)); i++) {
             positions.add(new Position(sourceX + direction.getXDegree() * i, sourceY - direction.getYDegree() * i));
         }
         return positions;
